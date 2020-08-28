@@ -44,7 +44,7 @@
         }
       }
     },
-    "/apis/grafana.searchlight.dev/": {
+    "/apis/auditor.kubeshield.to/": {
       "get": {
         "description": "get information of a group",
         "consumes": [
@@ -74,7 +74,7 @@
         }
       }
     },
-    "/apis/grafana.searchlight.dev/v1alpha1/": {
+    "/apis/auditor.kubeshield.to/v1alpha1/": {
       "get": {
         "description": "get available resources",
         "consumes": [
@@ -104,7 +104,7 @@
         }
       }
     },
-    "/apis/grafana.searchlight.dev/v1alpha1/dashboards": {
+    "/apis/auditor.kubeshield.to/v1alpha1/dashboards": {
       "get": {
         "description": "list or watch objects of kind Dashboard",
         "consumes": [
@@ -134,7 +134,7 @@
         },
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -205,7 +205,7 @@
         }
       ]
     },
-    "/apis/grafana.searchlight.dev/v1alpha1/namespaces/{namespace}/dashboards": {
+    "/apis/auditor.kubeshield.to/v1alpha1/namespaces/{namespace}/dashboards": {
       "get": {
         "description": "list or watch objects of kind Dashboard",
         "consumes": [
@@ -293,7 +293,7 @@
         },
         "x-kubernetes-action": "list",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -361,7 +361,7 @@
         },
         "x-kubernetes-action": "post",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -486,7 +486,7 @@
         },
         "x-kubernetes-action": "deletecollection",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -509,7 +509,7 @@
         }
       ]
     },
-    "/apis/grafana.searchlight.dev/v1alpha1/namespaces/{namespace}/dashboards/{name}": {
+    "/apis/auditor.kubeshield.to/v1alpha1/namespaces/{namespace}/dashboards/{name}": {
       "get": {
         "description": "read the specified Dashboard",
         "consumes": [
@@ -537,7 +537,7 @@
         },
         "x-kubernetes-action": "get",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -599,7 +599,7 @@
         },
         "x-kubernetes-action": "put",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -674,7 +674,7 @@
         },
         "x-kubernetes-action": "delete",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -740,7 +740,7 @@
         },
         "x-kubernetes-action": "patch",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -771,7 +771,7 @@
         }
       ]
     },
-    "/apis/grafana.searchlight.dev/v1alpha1/watch/dashboards": {
+    "/apis/auditor.kubeshield.to/v1alpha1/watch/dashboards": {
       "get": {
         "description": "watch individual changes to a list of Dashboard. deprecated: use the 'watch' parameter with a list operation instead.",
         "consumes": [
@@ -801,7 +801,7 @@
         },
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -872,7 +872,7 @@
         }
       ]
     },
-    "/apis/grafana.searchlight.dev/v1alpha1/watch/namespaces/{namespace}/dashboards": {
+    "/apis/auditor.kubeshield.to/v1alpha1/watch/namespaces/{namespace}/dashboards": {
       "get": {
         "description": "watch individual changes to a list of Dashboard. deprecated: use the 'watch' parameter with a list operation instead.",
         "consumes": [
@@ -902,7 +902,7 @@
         },
         "x-kubernetes-action": "watchlist",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -981,7 +981,7 @@
         }
       ]
     },
-    "/apis/grafana.searchlight.dev/v1alpha1/watch/namespaces/{namespace}/dashboards/{name}": {
+    "/apis/auditor.kubeshield.to/v1alpha1/watch/namespaces/{namespace}/dashboards/{name}": {
       "get": {
         "description": "watch changes to an object of kind Dashboard. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter.",
         "consumes": [
@@ -1011,7 +1011,7 @@
         },
         "x-kubernetes-action": "watch",
         "x-kubernetes-group-version-kind": {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "version": "v1alpha1",
           "kind": "Dashboard"
         }
@@ -1123,7 +1123,7 @@
       },
       "x-kubernetes-group-version-kind": [
         {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "kind": "Dashboard",
           "version": "v1alpha1"
         }
@@ -1152,7 +1152,7 @@
       },
       "x-kubernetes-group-version-kind": [
         {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "kind": "DashboardList",
           "version": "v1alpha1"
         }
@@ -1469,7 +1469,7 @@
           "version": "v1"
         },
         {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "kind": "DeleteOptions",
           "version": "v1alpha1"
         }
@@ -1757,7 +1757,7 @@
           "version": "v1"
         },
         {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "kind": "Status",
           "version": "v1alpha1"
         }
@@ -1843,7 +1843,7 @@
           "version": "v1"
         },
         {
-          "group": "grafana.searchlight.dev",
+          "group": "auditor.kubeshield.to",
           "kind": "WatchEvent",
           "version": "v1alpha1"
         }

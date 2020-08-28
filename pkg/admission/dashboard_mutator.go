@@ -19,7 +19,7 @@ package admission
 import (
 	"sync"
 
-	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
 
 	admission "k8s.io/api/admission/v1beta1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -29,7 +29,7 @@ import (
 )
 
 const (
-	mutatorGroup   = "mutators.grafana.searchlight.dev"
+	mutatorGroup   = "mutators.auditor.kubeshield.to"
 	mutatorVersion = "v1alpha1"
 )
 

@@ -23,14 +23,13 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "kubeshield.dev/auditor/client/clientset/versioned"
-	grafana "kubeshield.dev/auditor/client/informers/externalversions/grafana"
-	internalinterfaces "kubeshield.dev/auditor/client/informers/externalversions/internalinterfaces"
-
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
+	versioned "kubeshield.dev/auditor/client/clientset/versioned"
+	auditor "kubeshield.dev/auditor/client/informers/externalversions/auditor"
+	internalinterfaces "kubeshield.dev/auditor/client/informers/externalversions/internalinterfaces"
 )
 
 // SharedInformerOption defines the functional option type for SharedInformerFactory.
@@ -173,9 +172,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Grafana() grafana.Interface
+	Auditor() auditor.Interface
 }
 
-func (f *sharedInformerFactory) Grafana() grafana.Interface {
-	return grafana.New(f, f.namespace, f.tweakListOptions)
+func (f *sharedInformerFactory) Auditor() auditor.Interface {
+	return auditor.New(f, f.namespace, f.tweakListOptions)
 }

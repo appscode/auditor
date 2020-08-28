@@ -19,7 +19,7 @@ package framework
 import (
 	"context"
 
-	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	meta_util "kmodules.xyz/client-go/meta"

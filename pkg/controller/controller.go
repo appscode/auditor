@@ -20,11 +20,11 @@ import (
 	"context"
 	"fmt"
 
-	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
 	cs "kubeshield.dev/auditor/client/clientset/versioned"
-	"kubeshield.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
+	"kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1/util"
 	grafanainformers "kubeshield.dev/auditor/client/informers/externalversions"
-	grafana_listers "kubeshield.dev/auditor/client/listers/grafana/v1alpha1"
+	grafana_listers "kubeshield.dev/auditor/client/listers/auditor/v1alpha1"
 	"kubeshield.dev/auditor/pkg/eventer"
 
 	pcm "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"

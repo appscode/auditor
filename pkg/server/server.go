@@ -22,7 +22,7 @@ import (
 	"os"
 	"strings"
 
-	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
 	vsadmission "kubeshield.dev/auditor/pkg/admission"
 	"kubeshield.dev/auditor/pkg/controller"
 	"kubeshield.dev/auditor/pkg/eventer"
@@ -45,7 +45,7 @@ import (
 )
 
 const (
-	apiserviceName = "v1alpha1.validators.grafana.searchlight.dev"
+	apiserviceName = "v1alpha1.validators.auditor.kubeshield.to"
 )
 
 var (

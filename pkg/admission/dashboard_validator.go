@@ -21,7 +21,7 @@ import (
 	"strings"
 	"sync"
 
-	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
 	cs "kubeshield.dev/auditor/client/clientset/versioned"
 
 	admission "k8s.io/api/admission/v1beta1"
@@ -35,7 +35,7 @@ import (
 )
 
 const (
-	validatorGroup   = "validators.grafana.searchlight.dev"
+	validatorGroup   = "validators.auditor.kubeshield.to"
 	validatorVersion = "v1alpha1"
 )
 

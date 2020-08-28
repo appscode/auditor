@@ -22,7 +22,7 @@ import (
 	"os"
 	"time"
 
-	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
 	"kubeshield.dev/auditor/test/e2e/framework"
 
 	"github.com/appscode/go/types"

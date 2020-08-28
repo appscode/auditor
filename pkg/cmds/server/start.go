@@ -32,7 +32,7 @@ import (
 	"kmodules.xyz/client-go/tools/clientcmd"
 )
 
-const defaultEtcdPathPrefix = "/registry/grafana.searchlight.dev"
+const defaultEtcdPathPrefix = "/registry/auditor.kubeshield.to"
 
 type DashboardOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions

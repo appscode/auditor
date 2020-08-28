@@ -19,15 +19,14 @@ limitations under the License.
 package fake
 
 import (
-	clientset "kubeshield.dev/auditor/client/clientset/versioned"
-	grafanav1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1"
-	fakegrafanav1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/fake"
-
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
 	fakediscovery "k8s.io/client-go/discovery/fake"
 	"k8s.io/client-go/testing"
+	clientset "kubeshield.dev/auditor/client/clientset/versioned"
+	auditorv1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1"
+	fakeauditorv1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1/fake"
 )
 
 // NewSimpleClientset returns a clientset that will respond with the provided objects.
@@ -77,7 +76,7 @@ func (c *Clientset) Tracker() testing.ObjectTracker {
 
 var _ clientset.Interface = &Clientset{}
 
-// GrafanaV1alpha1 retrieves the GrafanaV1alpha1Client
-func (c *Clientset) GrafanaV1alpha1() grafanav1alpha1.GrafanaV1alpha1Interface {
-	return &fakegrafanav1alpha1.FakeGrafanaV1alpha1{Fake: &c.Fake}
+// AuditorV1alpha1 retrieves the AuditorV1alpha1Client
+func (c *Clientset) AuditorV1alpha1() auditorv1alpha1.AuditorV1alpha1Interface {
+	return &fakeauditorv1alpha1.FakeAuditorV1alpha1{Fake: &c.Fake}
 }

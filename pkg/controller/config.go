@@ -35,8 +35,8 @@ import (
 )
 
 const (
-	mutatingWebhook   = "mutators.grafana.searchlight.dev"
-	validatingWebhook = "validators.grafana.searchlight.dev"
+	mutatingWebhook   = "mutators.auditor.kubeshield.to"
+	validatingWebhook = "validators.auditor.kubeshield.to"
 )
 
 type config struct {

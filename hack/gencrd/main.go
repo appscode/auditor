@@ -21,8 +21,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"kubeshield.dev/auditor/apis/grafana/install"
-	"kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	"kubeshield.dev/auditor/apis/auditor/install"
+	"kubeshield.dev/auditor/apis/auditor/v1alpha1"
 
 	gort "github.com/appscode/go/runtime"
 	"github.com/go-openapi/spec"

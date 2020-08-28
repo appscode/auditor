@@ -20,7 +20,7 @@ package sdk
 */
 
 // Folder as described in the doc
-// https://grafana.com/docs/grafana/latest/http_api/folder/#get-all-folders
+// https://grafana.com/docs/auditor/latest/http_api/folder/#get-all-folders
 type Folder struct {
 	ID        int    `json:"id"`
 	UID       string `json:"uid"`

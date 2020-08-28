@@ -21,10 +21,10 @@ COMPRESS ?= no
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS          ?= "crd:trivialVersions=true,preserveUnknownFields=false,crdVersions={v1beta1,v1}"
 CODE_GENERATOR_IMAGE ?= appscode/gengo:release-1.18
-API_GROUPS           ?= grafana:v1alpha1
+API_GROUPS           ?= auditor:v1alpha1
 
 # Where to push the docker image.
-REGISTRY ?= searchlight
+REGISTRY ?= kubeshield
 
 # This version-strategy uses git tags to set the version string
 git_branch       := $(shell git rev-parse --abbrev-ref HEAD)
@@ -202,7 +202,7 @@ gen-crds:
 			paths="./apis/..."              \
 			output:crd:artifacts:config=crds
 
-crds_to_patch := grafana.searchlight.dev_dashboards.yaml
+crds_to_patch := auditor.kubeshield.to_dashboards.yaml
 
 .PHONY: patch-crds
 patch-crds: $(addprefix patch-crd-, $(crds_to_patch))

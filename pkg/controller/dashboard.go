@@ -24,8 +24,8 @@ import (
 	"strconv"
 	"time"
 
-	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
-	"kubeshield.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
+	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
+	"kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1/util"
 	"kubeshield.dev/auditor/pkg/eventer"
 
 	"github.com/appscode/go/types"
@@ -43,7 +43,7 @@ import (
 )
 
 const (
-	DashboardFinalizer = "dahsboard.grafana.searchlight.dev"
+	DashboardFinalizer = "dahsboard.auditor.kubeshield.to"
 )
 
 func (c *GrafanaController) initDashboardWatcher() {

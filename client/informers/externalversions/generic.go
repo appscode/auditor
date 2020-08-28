@@ -21,10 +21,9 @@ package externalversions
 import (
 	"fmt"
 
-	v1alpha1 "kubeshield.dev/auditor/apis/grafana/v1alpha1"
-
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
+	v1alpha1 "kubeshield.dev/auditor/apis/auditor/v1alpha1"
 )
 
 // GenericInformer is type of SharedIndexInformer which will locate and delegate to other
@@ -53,13 +52,13 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=grafana.searchlight.dev, Version=v1alpha1
+	// Group=auditor.kubeshield.to, Version=v1alpha1
 	case v1alpha1.SchemeGroupVersion.WithResource("dashboards"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Grafana().V1alpha1().Dashboards().Informer()}, nil
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Auditor().V1alpha1().Dashboards().Informer()}, nil
 	case v1alpha1.SchemeGroupVersion.WithResource("dashboardtemplates"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Grafana().V1alpha1().DashboardTemplates().Informer()}, nil
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Auditor().V1alpha1().DashboardTemplates().Informer()}, nil
 	case v1alpha1.SchemeGroupVersion.WithResource("datasources"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Grafana().V1alpha1().Datasources().Informer()}, nil
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Auditor().V1alpha1().Datasources().Informer()}, nil
 
 	}
 

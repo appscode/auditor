@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// https://grafana.com/docs/grafana/latest/http_api/annotations/
+// https://grafana.com/docs/auditor/latest/http_api/annotations/
 
 // CreateAnnotation creates a new annotation from the annotation request
 func (r *Client) CreateAnnotation(ctx context.Context, a CreateAnnotationRequest) (StatusMessage, error) {
@@ -91,7 +91,7 @@ func (r *Client) DeleteAnnotation(ctx context.Context, id uint) (StatusMessage, 
 }
 
 // GetAnnotationsParams is the type for all options implementing query parameters
-// https://grafana.com/docs/grafana/latest/http_api/annotations/#find-annotations
+// https://grafana.com/docs/auditor/latest/http_api/annotations/#find-annotations
 type GetAnnotationsParams func(values url.Values)
 
 // WithTag adds the tag to the
