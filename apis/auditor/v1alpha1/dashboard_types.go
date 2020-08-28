@@ -33,7 +33,7 @@ const (
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=dashboards,singular=dashboard,categories={auditor,searchlight,appscode}
+// +kubebuilder:resource:path=dashboards,singular=dashboard,categories={auditor,kubeshield,appscode}
 // +kubebuilder:subresource:status
 type Dashboard struct {
 	metav1.TypeMeta   `json:",inline,omitempty"`

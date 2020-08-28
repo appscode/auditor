@@ -31,7 +31,7 @@ const (
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=datasources,singular=datasource,categories={auditor,searchlight,appscode}
+// +kubebuilder:resource:path=datasources,singular=datasource,categories={auditor,kubeshield,appscode}
 // +kubebuilder:subresource:status
 type Datasource struct {
 	metav1.TypeMeta   `json:",inline,omitempty"`

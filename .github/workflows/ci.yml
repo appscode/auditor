@@ -92,7 +92,7 @@ jobs:
       - name: Check out installer
         run: |
           cd ..
-          git clone https://github.com/searchlight/installer.git
+          git clone https://github.com/kubeshield/installer.git
           cd installer
           git checkout master
 

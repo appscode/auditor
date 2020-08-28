@@ -30,7 +30,7 @@ import "kmodules.xyz/client-go/api/v1/generated.proto";
 option go_package = "v1alpha1";
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=dashboards,singular=dashboard,categories={auditor,searchlight,appscode}
+// +kubebuilder:resource:path=dashboards,singular=dashboard,categories={auditor,kubeshield,appscode}
 // +kubebuilder:subresource:status
 message Dashboard {
   optional k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta metadata = 1;
@@ -96,7 +96,7 @@ message DashboardStatus {
 }
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=dashboardtemplates,singular=dashboardtemplate,scope=Cluster,categories={auditor,searchlight,appscode}
+// +kubebuilder:resource:path=dashboardtemplates,singular=dashboardtemplate,scope=Cluster,categories={auditor,kubeshield,appscode}
 // +kubebuilder:subresource:status
 message DashboardTemplate {
   optional k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta metadata = 1;
@@ -135,7 +135,7 @@ message DashboardTemplateSpec {
 }
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=datasources,singular=datasource,categories={auditor,searchlight,appscode}
+// +kubebuilder:resource:path=datasources,singular=datasource,categories={auditor,kubeshield,appscode}
 // +kubebuilder:subresource:status
 message Datasource {
   optional k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta metadata = 1;

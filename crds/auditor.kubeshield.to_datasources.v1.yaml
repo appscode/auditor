@@ -10,7 +10,7 @@ spec:
   names:
     categories:
     - grafana
-    - searchlight
+    - kubeshield
     - appscode
     kind: Datasource
     listKind: DatasourceList

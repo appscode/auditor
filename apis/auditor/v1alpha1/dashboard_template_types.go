@@ -31,7 +31,7 @@ const (
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:path=dashboardtemplates,singular=dashboardtemplate,scope=Cluster,categories={auditor,searchlight,appscode}
+// +kubebuilder:resource:path=dashboardtemplates,singular=dashboardtemplate,scope=Cluster,categories={auditor,kubeshield,appscode}
 // +kubebuilder:subresource:status
 type DashboardTemplate struct {
 	metav1.TypeMeta   `json:",inline,omitempty"`
