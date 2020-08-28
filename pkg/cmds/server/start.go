@@ -21,8 +21,8 @@ import (
 	"io"
 	"net"
 
-	"go.searchlight.dev/grafana-operator/pkg/controller"
-	"go.searchlight.dev/grafana-operator/pkg/server"
+	"go.appscode.dev/auditor/pkg/controller"
+	"go.appscode.dev/auditor/pkg/server"
 
 	"github.com/spf13/pflag"
 	admissionv1beta1 "k8s.io/api/admission/v1beta1"
@@ -48,7 +48,7 @@ func NewDashboardOptions(out, errOut io.Writer) *DashboardOptions {
 		RecommendedOptions: genericoptions.NewRecommendedOptions(
 			defaultEtcdPathPrefix,
 			server.Codecs.LegacyCodec(admissionv1beta1.SchemeGroupVersion),
-			genericoptions.NewProcessInfo("grafana-operator", meta.Namespace()),
+			genericoptions.NewProcessInfo("auditor", meta.Namespace()),
 		),
 		ExtraOptions: NewExtraOptions(),
 		StdOut:       out,

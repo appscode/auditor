@@ -19,7 +19,7 @@ package framework
 import (
 	"context"
 
-	api "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
+	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	meta_util "kmodules.xyz/client-go/meta"

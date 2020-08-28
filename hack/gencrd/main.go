@@ -21,8 +21,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"go.searchlight.dev/grafana-operator/apis/grafana/install"
-	"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
+	"go.appscode.dev/auditor/apis/grafana/install"
+	"go.appscode.dev/auditor/apis/grafana/v1alpha1"
 
 	gort "github.com/appscode/go/runtime"
 	"github.com/go-openapi/spec"
@@ -69,7 +69,7 @@ func generateSwaggerJson() {
 		glog.Fatal(err)
 	}
 
-	filename := gort.GOPath() + "/src/go.searchlight.dev/grafana-operator/openapi/swagger.json"
+	filename := gort.GOPath() + "/src/go.appscode.dev/auditor/openapi/swagger.json"
 	err = os.MkdirAll(filepath.Dir(filename), 0755)
 	if err != nil {
 		glog.Fatal(err)

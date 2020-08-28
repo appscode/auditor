@@ -19,8 +19,8 @@ limitations under the License.
 package grafana
 
 import (
-	v1alpha1 "go.searchlight.dev/grafana-operator/client/informers/externalversions/grafana/v1alpha1"
-	internalinterfaces "go.searchlight.dev/grafana-operator/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "go.appscode.dev/auditor/client/informers/externalversions/grafana/v1alpha1"
+	internalinterfaces "go.appscode.dev/auditor/client/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to each of this group's versions.

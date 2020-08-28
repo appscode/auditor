@@ -20,7 +20,7 @@ import (
 	"flag"
 	"os"
 
-	"go.searchlight.dev/grafana-operator/client/clientset/versioned/scheme"
+	"go.appscode.dev/auditor/client/clientset/versioned/scheme"
 
 	"github.com/appscode/go/flags"
 	v "github.com/appscode/go/version"
@@ -36,7 +36,7 @@ import (
 
 func NewRootCmd() *cobra.Command {
 	var rootCmd = &cobra.Command{
-		Use:               "grafana-operator [command]",
+		Use:               "auditor [command]",
 		Short:             `Vault Operator by AppsCode - HashiCorp Vault Operator for Kubernetes`,
 		DisableAutoGenTag: true,
 		PersistentPreRun: func(c *cobra.Command, args []string) {

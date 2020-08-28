@@ -22,10 +22,10 @@ import (
 	"os"
 	"strings"
 
-	api "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
-	vsadmission "go.searchlight.dev/grafana-operator/pkg/admission"
-	"go.searchlight.dev/grafana-operator/pkg/controller"
-	"go.searchlight.dev/grafana-operator/pkg/eventer"
+	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	vsadmission "go.appscode.dev/auditor/pkg/admission"
+	"go.appscode.dev/auditor/pkg/controller"
+	"go.appscode.dev/auditor/pkg/eventer"
 
 	admission "k8s.io/api/admission/v1beta1"
 	core "k8s.io/api/core/v1"
@@ -214,7 +214,7 @@ func (c completedConfig) New() (*GrafanaOperator, error) {
 						if e2 == nil {
 							eventer.CreateEventWithLog(
 								kubernetes.NewForConfigOrDie(c.ExtraConfig.ClientConfig),
-								"grafana-operator",
+								"auditor",
 								w,
 								core.EventTypeWarning,
 								eventer.EventReasonAdmissionWebhookNotActivated,

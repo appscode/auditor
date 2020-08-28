@@ -20,9 +20,9 @@ import (
 	"flag"
 	"time"
 
-	cs "go.searchlight.dev/grafana-operator/client/clientset/versioned"
-	"go.searchlight.dev/grafana-operator/pkg/controller"
-	"go.searchlight.dev/grafana-operator/pkg/docker"
+	cs "go.appscode.dev/auditor/client/clientset/versioned"
+	"go.appscode.dev/auditor/pkg/controller"
+	"go.appscode.dev/auditor/pkg/docker"
 
 	prom "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	"github.com/spf13/pflag"

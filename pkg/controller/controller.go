@@ -20,12 +20,12 @@ import (
 	"context"
 	"fmt"
 
-	api "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
-	cs "go.searchlight.dev/grafana-operator/client/clientset/versioned"
-	"go.searchlight.dev/grafana-operator/client/clientset/versioned/typed/grafana/v1alpha1/util"
-	grafanainformers "go.searchlight.dev/grafana-operator/client/informers/externalversions"
-	grafana_listers "go.searchlight.dev/grafana-operator/client/listers/grafana/v1alpha1"
-	"go.searchlight.dev/grafana-operator/pkg/eventer"
+	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	cs "go.appscode.dev/auditor/client/clientset/versioned"
+	"go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
+	grafanainformers "go.appscode.dev/auditor/client/informers/externalversions"
+	grafana_listers "go.appscode.dev/auditor/client/listers/grafana/v1alpha1"
+	"go.appscode.dev/auditor/pkg/eventer"
 
 	pcm "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	"github.com/golang/glog"

@@ -20,8 +20,8 @@ import (
 	"testing"
 	"time"
 
-	"go.searchlight.dev/grafana-operator/pkg/controller"
-	"go.searchlight.dev/grafana-operator/test/e2e/framework"
+	"go.appscode.dev/auditor/pkg/controller"
+	"go.appscode.dev/auditor/test/e2e/framework"
 
 	. "github.com/onsi/ginkgo"
 	"github.com/onsi/ginkgo/reporters"

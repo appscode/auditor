@@ -21,8 +21,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	api "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
-	cs "go.searchlight.dev/grafana-operator/client/clientset/versioned/typed/grafana/v1alpha1"
+	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	cs "go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1"
 
 	jsonpatch "github.com/evanphx/json-patch"
 	"github.com/golang/glog"

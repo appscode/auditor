@@ -17,7 +17,7 @@ limitations under the License.
 package install
 
 import (
-	"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
+	"go.appscode.dev/auditor/apis/grafana/v1alpha1"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"

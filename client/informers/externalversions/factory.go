@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "go.searchlight.dev/grafana-operator/client/clientset/versioned"
-	grafana "go.searchlight.dev/grafana-operator/client/informers/externalversions/grafana"
-	internalinterfaces "go.searchlight.dev/grafana-operator/client/informers/externalversions/internalinterfaces"
+	versioned "go.appscode.dev/auditor/client/clientset/versioned"
+	grafana "go.appscode.dev/auditor/client/informers/externalversions/grafana"
+	internalinterfaces "go.appscode.dev/auditor/client/informers/externalversions/internalinterfaces"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"

@@ -19,7 +19,7 @@ package admission
 import (
 	"sync"
 
-	api "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
+	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
 
 	admission "k8s.io/api/admission/v1beta1"
 	"k8s.io/apimachinery/pkg/runtime/schema"

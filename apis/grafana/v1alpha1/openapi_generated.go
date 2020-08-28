@@ -33,20 +33,20 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.Dashboard":                  schema_grafana_operator_apis_grafana_v1alpha1_Dashboard(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardList":              schema_grafana_operator_apis_grafana_v1alpha1_DashboardList(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardReference":         schema_grafana_operator_apis_grafana_v1alpha1_DashboardReference(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardSpec":              schema_grafana_operator_apis_grafana_v1alpha1_DashboardSpec(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardStatus":            schema_grafana_operator_apis_grafana_v1alpha1_DashboardStatus(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplate":          schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplate(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplateList":      schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateList(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplateReference": schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateReference(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplateSpec":      schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateSpec(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.Datasource":                 schema_grafana_operator_apis_grafana_v1alpha1_Datasource(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DatasourceList":             schema_grafana_operator_apis_grafana_v1alpha1_DatasourceList(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DatasourceSpec":             schema_grafana_operator_apis_grafana_v1alpha1_DatasourceSpec(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DatasourceStatus":           schema_grafana_operator_apis_grafana_v1alpha1_DatasourceStatus(ref),
-		"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.TargetRef":                  schema_grafana_operator_apis_grafana_v1alpha1_TargetRef(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.Dashboard":                  schema_grafana_operator_apis_grafana_v1alpha1_Dashboard(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardList":              schema_grafana_operator_apis_grafana_v1alpha1_DashboardList(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardReference":         schema_grafana_operator_apis_grafana_v1alpha1_DashboardReference(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardSpec":              schema_grafana_operator_apis_grafana_v1alpha1_DashboardSpec(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardStatus":            schema_grafana_operator_apis_grafana_v1alpha1_DashboardStatus(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplate":          schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplate(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplateList":      schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateList(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplateReference": schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateReference(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplateSpec":      schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateSpec(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.Datasource":                 schema_grafana_operator_apis_grafana_v1alpha1_Datasource(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DatasourceList":             schema_grafana_operator_apis_grafana_v1alpha1_DatasourceList(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DatasourceSpec":             schema_grafana_operator_apis_grafana_v1alpha1_DatasourceSpec(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.DatasourceStatus":           schema_grafana_operator_apis_grafana_v1alpha1_DatasourceStatus(ref),
+		"go.appscode.dev/auditor/apis/grafana/v1alpha1.TargetRef":                  schema_grafana_operator_apis_grafana_v1alpha1_TargetRef(ref),
 		"k8s.io/api/apps/v1.ControllerRevision":                                                schema_k8sio_api_apps_v1_ControllerRevision(ref),
 		"k8s.io/api/apps/v1.ControllerRevisionList":                                            schema_k8sio_api_apps_v1_ControllerRevisionList(ref),
 		"k8s.io/api/apps/v1.DaemonSet":                                                         schema_k8sio_api_apps_v1_DaemonSet(ref),
@@ -366,19 +366,19 @@ func schema_grafana_operator_apis_grafana_v1alpha1_Dashboard(ref common.Referenc
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardSpec"),
+							Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardStatus"),
+							Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardSpec", "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardSpec", "go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -413,7 +413,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardList(ref common.Refe
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.Dashboard"),
+										Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.Dashboard"),
 									},
 								},
 							},
@@ -423,7 +423,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardList(ref common.Refe
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.Dashboard", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.Dashboard", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 
@@ -483,7 +483,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardSpec(ref common.Refe
 				Properties: map[string]spec.Schema{
 					"grafana": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.TargetRef"),
+							Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.TargetRef"),
 						},
 					},
 					"model": {
@@ -508,7 +508,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardSpec(ref common.Refe
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.TargetRef", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.TargetRef", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
 	}
 }
 
@@ -542,7 +542,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardStatus(ref common.Re
 					"dashboard": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Dashboard indicates the updated dashboard database",
-							Ref:         ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardReference"),
+							Ref:         ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardReference"),
 						},
 					},
 					"conditions": {
@@ -562,7 +562,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardStatus(ref common.Re
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardReference", "kmodules.xyz/client-go/api/v1.Condition"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardReference", "kmodules.xyz/client-go/api/v1.Condition"},
 	}
 }
 
@@ -593,14 +593,14 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplate(ref common.
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplateSpec"),
+							Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplateSpec"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplateSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplateSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -635,7 +635,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateList(ref com
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplate"),
+										Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplate"),
 									},
 								},
 							},
@@ -645,7 +645,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateList(ref com
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplate", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplate", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 
@@ -719,7 +719,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateSpec(ref com
 				Properties: map[string]spec.Schema{
 					"dashboardtemplate": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplateReference"),
+							Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplateReference"),
 						},
 					},
 					"folderId": {
@@ -739,7 +739,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DashboardTemplateSpec(ref com
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DashboardTemplateReference"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.DashboardTemplateReference"},
 	}
 }
 
@@ -770,19 +770,19 @@ func schema_grafana_operator_apis_grafana_v1alpha1_Datasource(ref common.Referen
 					},
 					"spec": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DatasourceSpec"),
+							Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DatasourceSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
-							Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DatasourceStatus"),
+							Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.DatasourceStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DatasourceSpec", "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.DatasourceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.DatasourceSpec", "go.appscode.dev/auditor/apis/grafana/v1alpha1.DatasourceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
@@ -817,7 +817,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DatasourceList(ref common.Ref
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
-										Ref: ref("go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.Datasource"),
+										Ref: ref("go.appscode.dev/auditor/apis/grafana/v1alpha1.Datasource"),
 									},
 								},
 							},
@@ -827,7 +827,7 @@ func schema_grafana_operator_apis_grafana_v1alpha1_DatasourceList(ref common.Ref
 			},
 		},
 		Dependencies: []string{
-			"go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1.Datasource", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"go.appscode.dev/auditor/apis/grafana/v1alpha1.Datasource", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 

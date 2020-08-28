@@ -1,4 +1,4 @@
-module go.searchlight.dev/grafana-operator
+module go.appscode.dev/auditor
 
 go 1.13
 

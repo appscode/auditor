@@ -19,7 +19,7 @@ package main
 import (
 	"os"
 
-	"go.searchlight.dev/grafana-operator/pkg/cmds"
+	"go.appscode.dev/auditor/pkg/cmds"
 
 	"kmodules.xyz/client-go/logs"
 )

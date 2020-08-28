@@ -24,9 +24,9 @@ import (
 	"strconv"
 	"time"
 
-	api "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
-	"go.searchlight.dev/grafana-operator/client/clientset/versioned/typed/grafana/v1alpha1/util"
-	"go.searchlight.dev/grafana-operator/pkg/eventer"
+	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	"go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
+	"go.appscode.dev/auditor/pkg/eventer"
 
 	"github.com/appscode/go/types"
 	"github.com/golang/glog"

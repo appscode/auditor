@@ -17,7 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	"go.searchlight.dev/grafana-operator/crds"
+	"go.appscode.dev/auditor/crds"
 
 	"kmodules.xyz/client-go/apiextensions"
 )

@@ -17,7 +17,7 @@ limitations under the License.
 package framework
 
 import (
-	cs "go.searchlight.dev/grafana-operator/client/clientset/versioned"
+	cs "go.appscode.dev/auditor/client/clientset/versioned"
 
 	"github.com/appscode/go/crypto/rand"
 	"k8s.io/client-go/kubernetes"
@@ -47,7 +47,7 @@ func New(
 		extClient:    extClient,
 		appcatClient: appcatClient,
 
-		name:      rand.WithUniqSuffix("grafana-operator"),
+		name:      rand.WithUniqSuffix("auditor"),
 		namespace: rand.WithUniqSuffix("grafana"),
 	}
 }
@@ -55,7 +55,7 @@ func New(
 func (f *Framework) Invoke() *Invocation {
 	return &Invocation{
 		Framework: f,
-		app:       rand.WithUniqSuffix("grafana-operator-e2e"),
+		app:       rand.WithUniqSuffix("auditor-e2e"),
 	}
 }
 

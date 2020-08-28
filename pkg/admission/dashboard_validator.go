@@ -21,8 +21,8 @@ import (
 	"strings"
 	"sync"
 
-	api "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
-	cs "go.searchlight.dev/grafana-operator/client/clientset/versioned"
+	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	cs "go.appscode.dev/auditor/client/clientset/versioned"
 
 	admission "k8s.io/api/admission/v1beta1"
 	"k8s.io/apimachinery/pkg/runtime"

@@ -21,7 +21,7 @@ package versioned
 import (
 	"fmt"
 
-	grafanav1alpha1 "go.searchlight.dev/grafana-operator/client/clientset/versioned/typed/grafana/v1alpha1"
+	grafanav1alpha1 "go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1"
 
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"

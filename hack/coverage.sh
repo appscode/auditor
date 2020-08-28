@@ -17,7 +17,7 @@
 set -eou pipefail
 
 GOPATH=$(go env GOPATH)
-REPO_ROOT="$GOPATH/src/go.searchlight.dev/grafana-operator"
+REPO_ROOT="$GOPATH/src/go.appscode.dev/auditor"
 
 pushd $REPO_ROOT
 

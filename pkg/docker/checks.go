@@ -18,7 +18,7 @@ package docker
 
 const (
 	ACRegistry = "kubevault"
-	ImageStash = "grafana-operator"
+	ImageStash = "auditor"
 )
 
 type Docker struct {

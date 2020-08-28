@@ -19,9 +19,9 @@ limitations under the License.
 package fake
 
 import (
-	clientset "go.searchlight.dev/grafana-operator/client/clientset/versioned"
-	grafanav1alpha1 "go.searchlight.dev/grafana-operator/client/clientset/versioned/typed/grafana/v1alpha1"
-	fakegrafanav1alpha1 "go.searchlight.dev/grafana-operator/client/clientset/versioned/typed/grafana/v1alpha1/fake"
+	clientset "go.appscode.dev/auditor/client/clientset/versioned"
+	grafanav1alpha1 "go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1"
+	fakegrafanav1alpha1 "go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/fake"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"

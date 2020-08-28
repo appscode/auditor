@@ -22,10 +22,10 @@ import (
 	"context"
 	time "time"
 
-	grafanav1alpha1 "go.searchlight.dev/grafana-operator/apis/grafana/v1alpha1"
-	versioned "go.searchlight.dev/grafana-operator/client/clientset/versioned"
-	internalinterfaces "go.searchlight.dev/grafana-operator/client/informers/externalversions/internalinterfaces"
-	v1alpha1 "go.searchlight.dev/grafana-operator/client/listers/grafana/v1alpha1"
+	grafanav1alpha1 "go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	versioned "go.appscode.dev/auditor/client/clientset/versioned"
+	internalinterfaces "go.appscode.dev/auditor/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "go.appscode.dev/auditor/client/listers/grafana/v1alpha1"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"

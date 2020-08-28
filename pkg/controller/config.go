@@ -19,9 +19,9 @@ package controller
 import (
 	"time"
 
-	cs "go.searchlight.dev/grafana-operator/client/clientset/versioned"
-	grafanainformers "go.searchlight.dev/grafana-operator/client/informers/externalversions"
-	"go.searchlight.dev/grafana-operator/pkg/eventer"
+	cs "go.appscode.dev/auditor/client/clientset/versioned"
+	grafanainformers "go.appscode.dev/auditor/client/informers/externalversions"
+	"go.appscode.dev/auditor/pkg/eventer"
 
 	pcm "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	core "k8s.io/api/core/v1"
@@ -84,7 +84,7 @@ func (c *Config) New() (*GrafanaController, error) {
 			c.ResyncPeriod,
 			informers.WithNamespace(core.NamespaceAll)),
 		extInformerFactory: grafanainformers.NewSharedInformerFactory(c.ExtClient, c.ResyncPeriod),
-		recorder:           eventer.NewEventRecorder(c.KubeClient, "grafana-operator"),
+		recorder:           eventer.NewEventRecorder(c.KubeClient, "auditor"),
 	}
 
 	if err := ctrl.ensureCustomResourceDefinitions(); err != nil {
