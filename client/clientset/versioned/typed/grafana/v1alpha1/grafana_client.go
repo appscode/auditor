@@ -19,8 +19,8 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1alpha1 "go.appscode.dev/auditor/apis/grafana/v1alpha1"
-	"go.appscode.dev/auditor/client/clientset/versioned/scheme"
+	v1alpha1 "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	"kubeshield.dev/auditor/client/clientset/versioned/scheme"
 
 	rest "k8s.io/client-go/rest"
 )

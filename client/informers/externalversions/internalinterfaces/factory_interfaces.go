@@ -21,7 +21,7 @@ package internalinterfaces
 import (
 	time "time"
 
-	versioned "go.appscode.dev/auditor/client/clientset/versioned"
+	versioned "kubeshield.dev/auditor/client/clientset/versioned"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"

@@ -24,9 +24,9 @@ import (
 	"strconv"
 	"time"
 
-	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
-	"go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
-	"go.appscode.dev/auditor/pkg/eventer"
+	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	"kubeshield.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
+	"kubeshield.dev/auditor/pkg/eventer"
 
 	"github.com/appscode/go/types"
 	"github.com/golang/glog"

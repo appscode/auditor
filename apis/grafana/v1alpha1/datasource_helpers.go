@@ -17,7 +17,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	"go.appscode.dev/auditor/crds"
+	"kubeshield.dev/auditor/crds"
 
 	"kmodules.xyz/client-go/apiextensions"
 )

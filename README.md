@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/go.appscode.dev/auditor)](https://goreportcard.com/report/go.appscode.dev/auditor)
+[![Go Report Card](https://goreportcard.com/badge/kubeshield.dev/auditor)](https://goreportcard.com/report/kubeshield.dev/auditor)
 [![Build Status](https://github.com/searchlight/auditor/workflows/CI/badge.svg)](https://github.com/searchlight/auditor/actions?workflow=CI)
 [![codecov](https://codecov.io/gh/searchlight/auditor/branch/master/graph/badge.svg)](https://codecov.io/gh/searchlight/auditor)
 [![Docker Pulls](https://img.shields.io/docker/pulls/searchlight/auditor.svg)](https://hub.docker.com/r/searchlight/auditor/)

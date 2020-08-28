@@ -20,12 +20,12 @@ import (
 	"context"
 	"fmt"
 
-	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
-	cs "go.appscode.dev/auditor/client/clientset/versioned"
-	"go.appscode.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
-	grafanainformers "go.appscode.dev/auditor/client/informers/externalversions"
-	grafana_listers "go.appscode.dev/auditor/client/listers/grafana/v1alpha1"
-	"go.appscode.dev/auditor/pkg/eventer"
+	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	cs "kubeshield.dev/auditor/client/clientset/versioned"
+	"kubeshield.dev/auditor/client/clientset/versioned/typed/grafana/v1alpha1/util"
+	grafanainformers "kubeshield.dev/auditor/client/informers/externalversions"
+	grafana_listers "kubeshield.dev/auditor/client/listers/grafana/v1alpha1"
+	"kubeshield.dev/auditor/pkg/eventer"
 
 	pcm "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	"github.com/golang/glog"

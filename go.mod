@@ -1,4 +1,4 @@
-module go.appscode.dev/auditor
+module kubeshield.dev/auditor
 
 go 1.13
 

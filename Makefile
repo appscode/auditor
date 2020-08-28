@@ -13,7 +13,7 @@
 # limitations under the License.
 SHELL=/bin/bash -o pipefail
 
-GO_PKG   := go.appscode.dev
+GO_PKG   := kubeshield.dev
 REPO     := $(notdir $(shell pwd))
 BIN      := auditor
 COMPRESS ?= no
@@ -237,7 +237,7 @@ gen-crd-protos-%:
 			--proto-import=$(DOCKER_REPO_ROOT)/vendor    \
 			--proto-import=$(DOCKER_REPO_ROOT)/third_party/protobuf \
 			--apimachinery-packages=-k8s.io/apimachinery/pkg/api/resource,-k8s.io/apimachinery/pkg/apis/meta/v1,-k8s.io/apimachinery/pkg/apis/meta/v1beta1,-k8s.io/apimachinery/pkg/runtime,-k8s.io/apimachinery/pkg/runtime/schema,-k8s.io/apimachinery/pkg/util/intstr \
-			--packages=-k8s.io/api/core/v1,-k8s.io/api/apps/v1,-k8s.io/api/rbac/v1,-kmodules.xyz/custom-resources/apis/appcatalog/v1alpha1,-kmodules.xyz/monitoring-agent-api/api/v1,-kmodules.xyz/offshoot-api/api/v1,-kmodules.xyz/client-go/api/v1,go.appscode.dev/auditor/apis/$(subst _,/,$*)
+			--packages=-k8s.io/api/core/v1,-k8s.io/api/apps/v1,-k8s.io/api/rbac/v1,-kmodules.xyz/custom-resources/apis/appcatalog/v1alpha1,-kmodules.xyz/monitoring-agent-api/api/v1,-kmodules.xyz/offshoot-api/api/v1,-kmodules.xyz/client-go/api/v1,kubeshield.dev/auditor/apis/$(subst _,/,$*)
 
 .PHONY: gen-bindata
 gen-bindata:

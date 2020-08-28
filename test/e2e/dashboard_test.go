@@ -22,8 +22,8 @@ import (
 	"os"
 	"time"
 
-	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
-	"go.appscode.dev/auditor/test/e2e/framework"
+	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	"kubeshield.dev/auditor/test/e2e/framework"
 
 	"github.com/appscode/go/types"
 	. "github.com/onsi/ginkgo"

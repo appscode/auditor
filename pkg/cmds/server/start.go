@@ -21,8 +21,8 @@ import (
 	"io"
 	"net"
 
-	"go.appscode.dev/auditor/pkg/controller"
-	"go.appscode.dev/auditor/pkg/server"
+	"kubeshield.dev/auditor/pkg/controller"
+	"kubeshield.dev/auditor/pkg/server"
 
 	"github.com/spf13/pflag"
 	admissionv1beta1 "k8s.io/api/admission/v1beta1"

@@ -17,7 +17,7 @@ limitations under the License.
 package fuzzer
 
 import (
-	"go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	"kubeshield.dev/auditor/apis/grafana/v1alpha1"
 
 	fuzz "github.com/google/gofuzz"
 	runtimeserializer "k8s.io/apimachinery/pkg/runtime/serializer"

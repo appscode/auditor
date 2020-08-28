@@ -19,7 +19,7 @@ package cmds
 import (
 	"io"
 
-	"go.appscode.dev/auditor/pkg/cmds/server"
+	"kubeshield.dev/auditor/pkg/cmds/server"
 
 	"github.com/appscode/go/log"
 	v "github.com/appscode/go/version"

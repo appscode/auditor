@@ -19,8 +19,8 @@ package install
 import (
 	"testing"
 
-	"go.appscode.dev/auditor/apis/grafana/fuzzer"
-	"go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	"kubeshield.dev/auditor/apis/grafana/fuzzer"
+	"kubeshield.dev/auditor/apis/grafana/v1alpha1"
 
 	clientsetscheme "k8s.io/client-go/kubernetes/scheme"
 	crdfuzz "kmodules.xyz/crd-schema-fuzz"

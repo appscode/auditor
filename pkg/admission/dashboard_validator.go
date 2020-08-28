@@ -21,8 +21,8 @@ import (
 	"strings"
 	"sync"
 
-	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
-	cs "go.appscode.dev/auditor/client/clientset/versioned"
+	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	cs "kubeshield.dev/auditor/client/clientset/versioned"
 
 	admission "k8s.io/api/admission/v1beta1"
 	"k8s.io/apimachinery/pkg/runtime"

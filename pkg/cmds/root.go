@@ -20,7 +20,7 @@ import (
 	"flag"
 	"os"
 
-	"go.appscode.dev/auditor/client/clientset/versioned/scheme"
+	"kubeshield.dev/auditor/client/clientset/versioned/scheme"
 
 	"github.com/appscode/go/flags"
 	v "github.com/appscode/go/version"

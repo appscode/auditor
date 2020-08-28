@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "go.appscode.dev/auditor/client/clientset/versioned"
-	grafana "go.appscode.dev/auditor/client/informers/externalversions/grafana"
-	internalinterfaces "go.appscode.dev/auditor/client/informers/externalversions/internalinterfaces"
+	versioned "kubeshield.dev/auditor/client/clientset/versioned"
+	grafana "kubeshield.dev/auditor/client/informers/externalversions/grafana"
+	internalinterfaces "kubeshield.dev/auditor/client/informers/externalversions/internalinterfaces"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"

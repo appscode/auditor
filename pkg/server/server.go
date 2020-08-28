@@ -22,10 +22,10 @@ import (
 	"os"
 	"strings"
 
-	api "go.appscode.dev/auditor/apis/grafana/v1alpha1"
-	vsadmission "go.appscode.dev/auditor/pkg/admission"
-	"go.appscode.dev/auditor/pkg/controller"
-	"go.appscode.dev/auditor/pkg/eventer"
+	api "kubeshield.dev/auditor/apis/grafana/v1alpha1"
+	vsadmission "kubeshield.dev/auditor/pkg/admission"
+	"kubeshield.dev/auditor/pkg/controller"
+	"kubeshield.dev/auditor/pkg/eventer"
 
 	admission "k8s.io/api/admission/v1beta1"
 	core "k8s.io/api/core/v1"

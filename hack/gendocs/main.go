@@ -26,7 +26,7 @@ import (
 	"strings"
 	"text/template"
 
-	"go.appscode.dev/auditor/pkg/cmds"
+	"kubeshield.dev/auditor/pkg/cmds"
 
 	"github.com/appscode/go/runtime"
 	"github.com/spf13/cobra/doc"

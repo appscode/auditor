@@ -19,9 +19,9 @@ package controller
 import (
 	"time"
 
-	cs "go.appscode.dev/auditor/client/clientset/versioned"
-	grafanainformers "go.appscode.dev/auditor/client/informers/externalversions"
-	"go.appscode.dev/auditor/pkg/eventer"
+	cs "kubeshield.dev/auditor/client/clientset/versioned"
+	grafanainformers "kubeshield.dev/auditor/client/informers/externalversions"
+	"kubeshield.dev/auditor/pkg/eventer"
 
 	pcm "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	core "k8s.io/api/core/v1"

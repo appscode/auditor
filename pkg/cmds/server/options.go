@@ -20,9 +20,9 @@ import (
 	"flag"
 	"time"
 
-	cs "go.appscode.dev/auditor/client/clientset/versioned"
-	"go.appscode.dev/auditor/pkg/controller"
-	"go.appscode.dev/auditor/pkg/docker"
+	cs "kubeshield.dev/auditor/client/clientset/versioned"
+	"kubeshield.dev/auditor/pkg/controller"
+	"kubeshield.dev/auditor/pkg/docker"
 
 	prom "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	"github.com/spf13/pflag"

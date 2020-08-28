@@ -17,7 +17,7 @@ limitations under the License.
 package framework
 
 import (
-	cs "go.appscode.dev/auditor/client/clientset/versioned"
+	cs "kubeshield.dev/auditor/client/clientset/versioned"
 
 	"github.com/appscode/go/crypto/rand"
 	"k8s.io/client-go/kubernetes"

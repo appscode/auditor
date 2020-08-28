@@ -19,7 +19,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	internalinterfaces "go.appscode.dev/auditor/client/informers/externalversions/internalinterfaces"
+	internalinterfaces "kubeshield.dev/auditor/client/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to all the informers in this group version.

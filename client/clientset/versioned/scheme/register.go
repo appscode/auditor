@@ -19,7 +19,7 @@ limitations under the License.
 package scheme
 
 import (
-	grafanav1alpha1 "go.appscode.dev/auditor/apis/grafana/v1alpha1"
+	grafanav1alpha1 "kubeshield.dev/auditor/apis/grafana/v1alpha1"
 
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"

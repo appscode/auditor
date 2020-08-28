@@ -20,7 +20,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"go.appscode.dev/auditor/pkg/cmds/server"
+	"kubeshield.dev/auditor/pkg/cmds/server"
 
 	"k8s.io/client-go/util/homedir"
 )
