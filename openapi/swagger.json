@@ -61,9 +61,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev"
+          "auditorKubeshieldTo"
         ],
-        "operationId": "getGrafanaSearchlightDevAPIGroup",
+        "operationId": "getAuditorKubeshieldToAPIGroup",
         "responses": {
           "200": {
             "description": "OK",
@@ -91,9 +91,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "getGrafanaSearchlightDevV1alpha1APIResources",
+        "operationId": "getAuditorKubeshieldToV1alpha1APIResources",
         "responses": {
           "200": {
             "description": "OK",
@@ -121,14 +121,14 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "listGrafanaSearchlightDevV1alpha1DashboardForAllNamespaces",
+        "operationId": "listAuditorKubeshieldToV1alpha1DashboardForAllNamespaces",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardList"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardList"
             }
           }
         },
@@ -222,9 +222,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "listGrafanaSearchlightDevV1alpha1NamespacedDashboard",
+        "operationId": "listAuditorKubeshieldToV1alpha1NamespacedDashboard",
         "parameters": [
           {
             "uniqueItems": true,
@@ -287,7 +287,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardList"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardList"
             }
           }
         },
@@ -312,16 +312,16 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "createGrafanaSearchlightDevV1alpha1NamespacedDashboard",
+        "operationId": "createAuditorKubeshieldToV1alpha1NamespacedDashboard",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           },
           {
@@ -343,19 +343,19 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           },
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           },
           "202": {
             "description": "Accepted",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           }
         },
@@ -380,9 +380,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "deleteGrafanaSearchlightDevV1alpha1CollectionNamespacedDashboard",
+        "operationId": "deleteAuditorKubeshieldToV1alpha1CollectionNamespacedDashboard",
         "parameters": [
           {
             "uniqueItems": true,
@@ -524,14 +524,14 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "readGrafanaSearchlightDevV1alpha1NamespacedDashboard",
+        "operationId": "readAuditorKubeshieldToV1alpha1NamespacedDashboard",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           }
         },
@@ -556,16 +556,16 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "replaceGrafanaSearchlightDevV1alpha1NamespacedDashboard",
+        "operationId": "replaceAuditorKubeshieldToV1alpha1NamespacedDashboard",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           },
           {
@@ -587,13 +587,13 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           },
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           }
         },
@@ -618,9 +618,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "deleteGrafanaSearchlightDevV1alpha1NamespacedDashboard",
+        "operationId": "deleteAuditorKubeshieldToV1alpha1NamespacedDashboard",
         "parameters": [
           {
             "name": "body",
@@ -696,9 +696,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "patchGrafanaSearchlightDevV1alpha1NamespacedDashboard",
+        "operationId": "patchAuditorKubeshieldToV1alpha1NamespacedDashboard",
         "parameters": [
           {
             "name": "body",
@@ -734,7 +734,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+              "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
             }
           }
         },
@@ -788,9 +788,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "watchGrafanaSearchlightDevV1alpha1DashboardListForAllNamespaces",
+        "operationId": "watchAuditorKubeshieldToV1alpha1DashboardListForAllNamespaces",
         "responses": {
           "200": {
             "description": "OK",
@@ -889,9 +889,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "watchGrafanaSearchlightDevV1alpha1NamespacedDashboardList",
+        "operationId": "watchAuditorKubeshieldToV1alpha1NamespacedDashboardList",
         "responses": {
           "200": {
             "description": "OK",
@@ -998,9 +998,9 @@
           "https"
         ],
         "tags": [
-          "grafanaSearchlightDev_v1alpha1"
+          "auditorKubeshieldTo_v1alpha1"
         ],
-        "operationId": "watchGrafanaSearchlightDevV1alpha1NamespacedDashboard",
+        "operationId": "watchAuditorKubeshieldToV1alpha1NamespacedDashboard",
         "responses": {
           "200": {
             "description": "OK",
@@ -1100,7 +1100,7 @@
     }
   },
   "definitions": {
-    "dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard": {
+    "dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard": {
       "type": "object",
       "properties": {
         "apiVersion": {
@@ -1115,10 +1115,10 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
         },
         "spec": {
-          "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardSpec"
+          "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardSpec"
         },
         "status": {
-          "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardStatus"
+          "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardStatus"
         }
       },
       "x-kubernetes-group-version-kind": [
@@ -1129,7 +1129,7 @@
         }
       ]
     },
-    "dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardList": {
+    "dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardList": {
       "type": "object",
       "properties": {
         "apiVersion": {
@@ -1139,7 +1139,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.Dashboard"
+            "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.Dashboard"
           }
         },
         "kind": {
@@ -1158,7 +1158,7 @@
         }
       ]
     },
-    "dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardReference": {
+    "dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardReference": {
       "type": "object",
       "properties": {
         "id": {
@@ -1184,19 +1184,19 @@
         }
       }
     },
-    "dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardSpec": {
+    "dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardSpec": {
       "type": "object",
       "required": [
         "folderId",
         "overwrite"
       ],
       "properties": {
+        "auditor": {
+          "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.TargetRef"
+        },
         "folderId": {
           "type": "integer",
           "format": "int64"
-        },
-        "grafana": {
-          "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.TargetRef"
         },
         "model": {
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.runtime.RawExtension"
@@ -1206,7 +1206,7 @@
         }
       }
     },
-    "dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardStatus": {
+    "dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardStatus": {
       "type": "object",
       "properties": {
         "conditions": {
@@ -1218,7 +1218,7 @@
         },
         "dashboard": {
           "description": "Dashboard indicates the updated dashboard database",
-          "$ref": "#/definitions/dev.kubeshield.go.auditor.apis.grafana.v1alpha1.DashboardReference"
+          "$ref": "#/definitions/dev.kubeshield.auditor.apis.auditor.v1alpha1.DashboardReference"
         },
         "observedGeneration": {
           "description": "ObservedGeneration is the most recent generation observed for this resource. It corresponds to the resource's generation, which is updated on mutation by the API Server.",
@@ -1235,7 +1235,7 @@
         }
       }
     },
-    "dev.kubeshield.go.auditor.apis.grafana.v1alpha1.TargetRef": {
+    "dev.kubeshield.auditor.apis.auditor.v1alpha1.TargetRef": {
       "type": "object",
       "properties": {
         "apiVersion": {
