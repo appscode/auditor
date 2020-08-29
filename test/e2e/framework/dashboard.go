@@ -26,14 +26,14 @@ import (
 )
 
 func (f *Framework) GetDashboard() (*api.Dashboard, error) {
-	return f.extClient.GrafanaV1alpha1().Dashboards(f.namespace).Get(context.TODO(), f.name, metav1.GetOptions{})
+	return f.extClient.AuditorV1alpha1().Dashboards(f.namespace).Get(context.TODO(), f.name, metav1.GetOptions{})
 }
 
 func (f *Framework) CreateDashboard(dashboard *api.Dashboard) error {
-	_, err := f.extClient.GrafanaV1alpha1().Dashboards(dashboard.Namespace).Create(context.TODO(), dashboard, metav1.CreateOptions{})
+	_, err := f.extClient.AuditorV1alpha1().Dashboards(dashboard.Namespace).Create(context.TODO(), dashboard, metav1.CreateOptions{})
 	return err
 }
 
 func (f *Framework) DeleteDashboard() error {
-	return f.extClient.GrafanaV1alpha1().Dashboards(f.namespace).Delete(context.TODO(), f.name, meta_util.DeleteInForeground())
+	return f.extClient.AuditorV1alpha1().Dashboards(f.namespace).Delete(context.TODO(), f.name, meta_util.DeleteInForeground())
 }

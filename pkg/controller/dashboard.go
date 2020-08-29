@@ -47,10 +47,10 @@ const (
 )
 
 func (c *GrafanaController) initDashboardWatcher() {
-	c.dashboardInformer = c.extInformerFactory.Grafana().V1alpha1().Dashboards().Informer()
+	c.dashboardInformer = c.extInformerFactory.Auditor().V1alpha1().Dashboards().Informer()
 	c.dashboardQueue = queue.New(api.ResourceKindDashboard, c.MaxNumRequeues, c.NumThreads, c.runDashboardInjector)
 	c.dashboardInformer.AddEventHandler(queue.NewReconcilableHandler(c.dashboardQueue.GetQueue()))
-	c.dashboardLister = c.extInformerFactory.Grafana().V1alpha1().Dashboards().Lister()
+	c.dashboardLister = c.extInformerFactory.Auditor().V1alpha1().Dashboards().Lister()
 }
 
 // runDashboardInjector gets the vault policy object indexed by the key from cache
@@ -78,7 +78,7 @@ func (c *GrafanaController) runDashboardInjector(key string) error {
 		} else {
 			if !core_util.HasFinalizer(dashboard.ObjectMeta, DashboardFinalizer) {
 				// Add finalizer
-				_, _, err := util.PatchDashboard(context.TODO(), c.extClient.GrafanaV1alpha1(), dashboard, func(vp *api.Dashboard) *api.Dashboard {
+				_, _, err := util.PatchDashboard(context.TODO(), c.extClient.AuditorV1alpha1(), dashboard, func(vp *api.Dashboard) *api.Dashboard {
 					vp.ObjectMeta = core_util.AddFinalizer(dashboard.ObjectMeta, DashboardFinalizer)
 					return vp
 				}, metav1.PatchOptions{})
@@ -102,7 +102,7 @@ func (c *GrafanaController) runDashboardInjector(key string) error {
 // it creates or updates dashboard
 func (c *GrafanaController) reconcileDashboard(dashboard *api.Dashboard) error {
 	// update Processing status
-	newDashboard, err := util.UpdateDashboardStatus(context.TODO(), c.extClient.GrafanaV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
+	newDashboard, err := util.UpdateDashboardStatus(context.TODO(), c.extClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
 		in.Phase = api.DashboardPhaseProcessing
 		in.Reason = "Started processing of dashboard"
 		in.Conditions = []kmapi.Condition{}
@@ -138,7 +138,7 @@ func (c *GrafanaController) reconcileDashboard(dashboard *api.Dashboard) error {
 // before the dashboard is deleted
 func (c *GrafanaController) runDashboardFinalizer(dashboard *api.Dashboard) {
 	// update Terminating status
-	newDashboard, err := util.UpdateDashboardStatus(context.TODO(), c.extClient.GrafanaV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
+	newDashboard, err := util.UpdateDashboardStatus(context.TODO(), c.extClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
 		in.Phase = api.DashboardPhaseTerminating
 		in.Reason = "Terminating dashboard"
 		in.ObservedGeneration = dashboard.Generation
@@ -167,7 +167,7 @@ func (c *GrafanaController) runDashboardFinalizer(dashboard *api.Dashboard) {
 		}
 	}
 
-	_, _, err = util.PatchDashboard(context.TODO(), c.extClient.GrafanaV1alpha1(), dashboard, func(in *api.Dashboard) *api.Dashboard {
+	_, _, err = util.PatchDashboard(context.TODO(), c.extClient.AuditorV1alpha1(), dashboard, func(in *api.Dashboard) *api.Dashboard {
 		in.ObjectMeta = core_util.RemoveFinalizer(dashboard.ObjectMeta, DashboardFinalizer)
 		return in
 	}, metav1.PatchOptions{})
@@ -194,7 +194,7 @@ func (c *GrafanaController) updateDashboard(dashboard *api.Dashboard, board sdk.
 
 	newDashboard, err := util.UpdateDashboardStatus(
 		context.TODO(),
-		c.extClient.GrafanaV1alpha1(),
+		c.extClient.AuditorV1alpha1(),
 		dashboard.ObjectMeta,
 		func(in *api.DashboardStatus) *api.DashboardStatus {
 			in.Phase = api.DashboardPhaseSuccess

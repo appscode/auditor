@@ -123,7 +123,7 @@ func (c *GrafanaController) pushFailureEvent(dashboard *api.Dashboard, reason st
 		dashboard.Name,
 		reason,
 	)
-	dashboard, err := util.UpdateDashboardStatus(context.TODO(), c.extClient.GrafanaV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
+	dashboard, err := util.UpdateDashboardStatus(context.TODO(), c.extClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
 		in.Phase = api.DashboardPhaseFailed
 		in.Reason = reason
 		in.Conditions = kmapi.SetCondition(in.Conditions, kmapi.Condition{
