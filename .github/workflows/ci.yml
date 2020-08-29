@@ -94,7 +94,7 @@ jobs:
           cd ..
           git clone https://github.com/kubeshield/installer.git
           cd installer
-          git checkout master
+          git checkout auditor
 
       - name: Run e2e tests
         env:
