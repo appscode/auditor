@@ -17,18 +17,12 @@ limitations under the License.
 package server
 
 import (
-	"context"
 	"fmt"
-	"os"
 	"strings"
 
-	api "kubeshield.dev/auditor/apis/auditor/v1alpha1"
-	vsadmission "kubeshield.dev/auditor/pkg/admission"
 	"kubeshield.dev/auditor/pkg/controller"
-	"kubeshield.dev/auditor/pkg/eventer"
 
 	admission "k8s.io/api/admission/v1beta1"
-	core "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -37,9 +31,6 @@ import (
 	"k8s.io/apimachinery/pkg/version"
 	"k8s.io/apiserver/pkg/registry/rest"
 	genericapiserver "k8s.io/apiserver/pkg/server"
-	"k8s.io/client-go/kubernetes"
-	reg_util "kmodules.xyz/client-go/admissionregistration/v1beta1"
-	dynamic_util "kmodules.xyz/client-go/dynamic"
 	hooks "kmodules.xyz/webhook-runtime/admission/v1beta1"
 	admissionreview "kmodules.xyz/webhook-runtime/registry/admissionreview/v1beta1"
 )
@@ -124,16 +115,6 @@ func (c completedConfig) New() (*GrafanaOperator, error) {
 	}
 
 	var admissionHooks []hooks.AdmissionHook
-	if c.ExtraConfig.EnableValidatingWebhook {
-		admissionHooks = append(admissionHooks,
-			&vsadmission.DashboardValidator{},
-		)
-	}
-	if c.ExtraConfig.EnableMutatingWebhook {
-		admissionHooks = append(admissionHooks,
-			&vsadmission.DashboardMutator{},
-		)
-	}
 
 	s := &GrafanaOperator{
 		GenericAPIServer: genericServer,
@@ -185,45 +166,6 @@ func (c completedConfig) New() (*GrafanaOperator, error) {
 		s.GenericAPIServer.AddPostStartHookOrDie(postStartName,
 			func(context genericapiserver.PostStartHookContext) error {
 				return admissionHook.Initialize(c.ExtraConfig.ClientConfig, context.StopCh)
-			},
-		)
-	}
-
-	if c.ExtraConfig.EnableValidatingWebhook {
-		s.GenericAPIServer.AddPostStartHookOrDie("validating-webhook-xray",
-			func(ctx genericapiserver.PostStartHookContext) error {
-				go func() {
-					xray := reg_util.NewCreateValidatingWebhookXray(c.ExtraConfig.ClientConfig, apiserviceName, &api.Dashboard{
-						TypeMeta: metav1.TypeMeta{
-							APIVersion: api.SchemeGroupVersion.String(),
-							Kind:       api.ResourceKindDashboard,
-						},
-						ObjectMeta: metav1.ObjectMeta{
-							Name:      "test-dashboard-for-webhook-xray",
-							Namespace: "default",
-						},
-						Spec: api.DashboardSpec{},
-					}, ctx.StopCh)
-					if err := xray.IsActive(context.TODO()); err != nil {
-						w, _, e2 := dynamic_util.DetectWorkload(
-							context.TODO(),
-							c.ExtraConfig.ClientConfig,
-							core.SchemeGroupVersion.WithResource("pods"),
-							os.Getenv("MY_POD_NAMESPACE"),
-							os.Getenv("MY_POD_NAME"))
-						if e2 == nil {
-							eventer.CreateEventWithLog(
-								kubernetes.NewForConfigOrDie(c.ExtraConfig.ClientConfig),
-								"auditor",
-								w,
-								core.EventTypeWarning,
-								eventer.EventReasonAdmissionWebhookNotActivated,
-								err.Error())
-						}
-						panic(err)
-					}
-				}()
-				return nil
 			},
 		)
 	}

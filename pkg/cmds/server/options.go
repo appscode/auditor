@@ -24,23 +24,20 @@ import (
 	"kubeshield.dev/auditor/pkg/controller"
 	"kubeshield.dev/auditor/pkg/docker"
 
-	prom "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	"github.com/spf13/pflag"
 	crd_cs "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
+	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"
 	"kmodules.xyz/client-go/tools/clusterid"
-	appcat_cs "kmodules.xyz/custom-resources/client/clientset/versioned/typed/appcatalog/v1alpha1"
 )
 
 type ExtraOptions struct {
-	DockerRegistry          string
-	MaxNumRequeues          int
-	NumThreads              int
-	QPS                     float64
-	Burst                   int
-	ResyncPeriod            time.Duration
-	EnableValidatingWebhook bool
-	EnableMutatingWebhook   bool
+	DockerRegistry string
+	MaxNumRequeues int
+	NumThreads     int
+	QPS            float64
+	Burst          int
+	ResyncPeriod   time.Duration
 }
 
 func NewExtraOptions() *ExtraOptions {
@@ -62,9 +59,6 @@ func (s *ExtraOptions) AddGoFlags(fs *flag.FlagSet) {
 	fs.Float64Var(&s.QPS, "qps", s.QPS, "The maximum QPS to the master from this client")
 	fs.IntVar(&s.Burst, "burst", s.Burst, "The maximum burst for throttle")
 	fs.DurationVar(&s.ResyncPeriod, "resync-period", s.ResyncPeriod, "If non-zero, will re-list this often. Otherwise, re-list will be delayed aslong as possible (until the upstream source closes the watch or times out.")
-
-	fs.BoolVar(&s.EnableMutatingWebhook, "enable-mutating-webhook", s.EnableMutatingWebhook, "If true, enables mutating webhooks for KubeVault CRDs.")
-	fs.BoolVar(&s.EnableValidatingWebhook, "enable-validating-webhook", s.EnableValidatingWebhook, "If true, enables validating webhooks for KubeVault CRDs.")
 }
 
 func (s *ExtraOptions) AddFlags(fs *pflag.FlagSet) {
@@ -82,22 +76,17 @@ func (s *ExtraOptions) ApplyTo(cfg *controller.Config) error {
 	cfg.ResyncPeriod = s.ResyncPeriod
 	cfg.ClientConfig.QPS = float32(s.QPS)
 	cfg.ClientConfig.Burst = s.Burst
-	cfg.EnableMutatingWebhook = s.EnableMutatingWebhook
-	cfg.EnableValidatingWebhook = s.EnableValidatingWebhook
 
 	if cfg.KubeClient, err = kubernetes.NewForConfig(cfg.ClientConfig); err != nil {
 		return err
 	}
-	if cfg.ExtClient, err = cs.NewForConfig(cfg.ClientConfig); err != nil {
+	if cfg.DynamicClient, err = dynamic.NewForConfig(cfg.ClientConfig); err != nil {
+		return err
+	}
+	if cfg.CRClient, err = cs.NewForConfig(cfg.ClientConfig); err != nil {
 		return err
 	}
 	if cfg.CRDClient, err = crd_cs.NewForConfig(cfg.ClientConfig); err != nil {
-		return err
-	}
-	if cfg.PromClient, err = prom.NewForConfig(cfg.ClientConfig); err != nil {
-		return err
-	}
-	if cfg.AppCatalogClient, err = appcat_cs.NewForConfig(cfg.ClientConfig); err != nil {
 		return err
 	}
 	return nil

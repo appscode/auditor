@@ -61,7 +61,7 @@ var _ = BeforeSuite(func() {
 	Expect(err).NotTo(HaveOccurred())
 
 	// Framework
-	root = framework.New(clientConfig, ctrlConfig.KubeClient, ctrlConfig.ExtClient, ctrlConfig.AppCatalogClient)
+	root = framework.New(clientConfig, ctrlConfig.KubeClient, ctrlConfig.CRClient, ctrlConfig.AppCatalogClient)
 
 	By("Creating namespace " + root.Namespace())
 	err = root.CreateNamespace()

@@ -400,7 +400,7 @@ type Target struct {
 	Region     string            `json:"region,omitempty"`
 
 	// For the Stackdriver data source. Find out more information at
-	// https:/grafana.com/docs/auditor/v6.0/features/datasources/stackdriver/
+	// https:/grafana.com/docs/grafana/v6.0/features/datasources/stackdriver/
 	AlignOptions       []StackdriverAlignOptions `json:"alignOptions,omitempty"`
 	AliasBy            string                    `json:"aliasBy,omitempty"`
 	MetricType         string                    `json:"metricType,omitempty"`

@@ -27,7 +27,7 @@ import (
 	"strconv"
 )
 
-// https://grafana.com/docs/auditor/latest/http_api/folder/
+// https://grafana.com/docs/grafana/latest/http_api/folder/
 
 // GetAllFolders gets all folders.
 // Reflects GET /api/folders API call.

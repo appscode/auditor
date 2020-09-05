@@ -37,7 +37,7 @@ import (
 func NewRootCmd() *cobra.Command {
 	var rootCmd = &cobra.Command{
 		Use:               "auditor [command]",
-		Short:             `Vault Operator by AppsCode - HashiCorp Vault Operator for Kubernetes`,
+		Short:             `Kubernetes Auditor by AppsCode`,
 		DisableAutoGenTag: true,
 		PersistentPreRun: func(c *cobra.Command, args []string) {
 			flags.DumpAll(c.Flags())

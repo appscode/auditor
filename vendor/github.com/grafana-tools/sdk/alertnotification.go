@@ -17,7 +17,7 @@ package sdk
 */
 
 // AlertNotification as described in the doc
-// https://grafana.com/docs/auditor/latest/http_api/alerting_notification_channels/
+// https://grafana.com/docs/grafana/latest/http_api/alerting_notification_channels/
 type AlertNotification struct {
 	ID                    int64       `json:"id,omitempty"`
 	Name                  string      `json:"name"`

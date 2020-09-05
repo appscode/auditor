@@ -24,57 +24,39 @@ import (
 	cs "kubeshield.dev/auditor/client/clientset/versioned"
 	"kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1/util"
 	grafanainformers "kubeshield.dev/auditor/client/informers/externalversions"
-	grafana_listers "kubeshield.dev/auditor/client/listers/auditor/v1alpha1"
 	"kubeshield.dev/auditor/pkg/eventer"
 
-	pcm "github.com/coreos/prometheus-operator/pkg/client/versioned/typed/monitoring/v1"
 	"github.com/golang/glog"
-	"github.com/grafana-tools/sdk"
 	core "k8s.io/api/core/v1"
 	crd_cs "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/runtime"
-	"k8s.io/client-go/informers"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/dynamic/dynamicinformer"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
-	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/record"
-	reg_util "kmodules.xyz/client-go/admissionregistration/v1beta1"
 	kmapi "kmodules.xyz/client-go/api/v1"
 	"kmodules.xyz/client-go/apiextensions"
-	"kmodules.xyz/client-go/tools/queue"
-	appcat "kmodules.xyz/custom-resources/apis/appcatalog/v1alpha1"
-	appcat_cs "kmodules.xyz/custom-resources/client/clientset/versioned/typed/appcatalog/v1alpha1"
 )
 
 type GrafanaController struct {
 	config
 	clientConfig *rest.Config
 
-	kubeClient       kubernetes.Interface
-	extClient        cs.Interface
-	appCatalogClient appcat_cs.AppcatalogV1alpha1Interface
-	crdClient        crd_cs.Interface
-	recorder         record.EventRecorder
-	// Prometheus client
-	promClient pcm.MonitoringV1Interface
+	kubeClient    kubernetes.Interface
+	dynamicClient dynamic.Interface
+	crClient      cs.Interface
+	crdClient     crd_cs.Interface
+	recorder      record.EventRecorder
 
-	kubeInformerFactory informers.SharedInformerFactory
-	extInformerFactory  grafanainformers.SharedInformerFactory
-
-	// for Dashboard
-	dashboardQueue    *queue.Worker
-	dashboardInformer cache.SharedIndexInformer
-	dashboardLister   grafana_listers.DashboardLister
-
-	// Grafana client
-	grafanaClient *sdk.Client
+	dynamicInformerFactory dynamicinformer.DynamicSharedInformerFactory
+	crInformerFactory      grafanainformers.SharedInformerFactory
 }
 
 func (c *GrafanaController) ensureCustomResourceDefinitions() error {
 	crds := []*apiextensions.CustomResourceDefinition{
 		api.Dashboard{}.CustomResourceDefinition(),
-		appcat.AppBinding{}.CustomResourceDefinition(),
 	}
 	return apiextensions.RegisterCRDs(c.crdClient, crds)
 }
@@ -82,36 +64,24 @@ func (c *GrafanaController) ensureCustomResourceDefinitions() error {
 func (c *GrafanaController) Run(stopCh <-chan struct{}) {
 	go c.RunInformers(stopCh)
 
-	if c.EnableMutatingWebhook {
-		cancel, _ := reg_util.SyncMutatingWebhookCABundle(c.clientConfig, mutatingWebhook)
-		defer cancel()
-	}
-	if c.EnableValidatingWebhook {
-		cancel, _ := reg_util.SyncValidatingWebhookCABundle(c.clientConfig, validatingWebhook)
-		defer cancel()
-	}
-
 	<-stopCh
 }
 
 func (c *GrafanaController) RunInformers(stopCh <-chan struct{}) {
 	defer runtime.HandleCrash()
 
-	glog.Info("Starting Grafana controller")
+	glog.Info("Starting Auditor")
 
-	c.extInformerFactory.Start(stopCh)
-	for _, v := range c.extInformerFactory.WaitForCacheSync(stopCh) {
+	c.crInformerFactory.Start(stopCh)
+	for _, v := range c.crInformerFactory.WaitForCacheSync(stopCh) {
 		if !v {
 			runtime.HandleError(fmt.Errorf("timed out waiting for caches to sync"))
 			return
 		}
 	}
 
-	//For Dashboard
-	go c.dashboardQueue.Run(stopCh)
-
 	<-stopCh
-	glog.Info("Stopping Vault operator")
+	glog.Info("Stopping Auditor")
 }
 
 func (c *GrafanaController) pushFailureEvent(dashboard *api.Dashboard, reason string) {
@@ -123,7 +93,7 @@ func (c *GrafanaController) pushFailureEvent(dashboard *api.Dashboard, reason st
 		dashboard.Name,
 		reason,
 	)
-	dashboard, err := util.UpdateDashboardStatus(context.TODO(), c.extClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
+	dashboard, err := util.UpdateDashboardStatus(context.TODO(), c.crClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
 		in.Phase = api.DashboardPhaseFailed
 		in.Reason = reason
 		in.Conditions = kmapi.SetCondition(in.Conditions, kmapi.Condition{
