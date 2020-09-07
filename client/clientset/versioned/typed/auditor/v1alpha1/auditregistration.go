@@ -31,46 +31,46 @@ import (
 	rest "k8s.io/client-go/rest"
 )
 
-// DashboardsGetter has a method to return a DashboardInterface.
+// AuditRegistrationsGetter has a method to return a AuditRegistrationInterface.
 // A group's client should implement this interface.
-type DashboardsGetter interface {
-	Dashboards(namespace string) DashboardInterface
+type AuditRegistrationsGetter interface {
+	AuditRegistrations(namespace string) AuditRegistrationInterface
 }
 
-// DashboardInterface has methods to work with AuditRegistration resources.
-type DashboardInterface interface {
-	Create(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.CreateOptions) (*v1alpha1.AuditRegistration, error)
-	Update(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (*v1alpha1.AuditRegistration, error)
-	UpdateStatus(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (*v1alpha1.AuditRegistration, error)
+// AuditRegistrationInterface has methods to work with AuditRegistration resources.
+type AuditRegistrationInterface interface {
+	Create(ctx context.Context, auditRegistration *v1alpha1.AuditRegistration, opts v1.CreateOptions) (*v1alpha1.AuditRegistration, error)
+	Update(ctx context.Context, auditRegistration *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (*v1alpha1.AuditRegistration, error)
+	UpdateStatus(ctx context.Context, auditRegistration *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (*v1alpha1.AuditRegistration, error)
 	Delete(ctx context.Context, name string, opts v1.DeleteOptions) error
 	DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error
 	Get(ctx context.Context, name string, opts v1.GetOptions) (*v1alpha1.AuditRegistration, error)
 	List(ctx context.Context, opts v1.ListOptions) (*v1alpha1.AuditRegistrationList, error)
 	Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error)
 	Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.AuditRegistration, err error)
-	DashboardExpansion
+	AuditRegistrationExpansion
 }
 
-// dashboards implements DashboardInterface
-type dashboards struct {
+// auditRegistrations implements AuditRegistrationInterface
+type auditRegistrations struct {
 	client rest.Interface
 	ns     string
 }
 
-// newDashboards returns a Dashboards
-func newDashboards(c *AuditorV1alpha1Client, namespace string) *dashboards {
-	return &dashboards{
+// newAuditRegistrations returns a AuditRegistrations
+func newAuditRegistrations(c *AuditorV1alpha1Client, namespace string) *auditRegistrations {
+	return &auditRegistrations{
 		client: c.RESTClient(),
 		ns:     namespace,
 	}
 }
 
-// Get takes name of the dashboard, and returns the corresponding dashboard object, and an error if there is any.
-func (c *dashboards) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.AuditRegistration, err error) {
+// Get takes name of the auditRegistration, and returns the corresponding auditRegistration object, and an error if there is any.
+func (c *auditRegistrations) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.AuditRegistration, err error) {
 	result = &v1alpha1.AuditRegistration{}
 	err = c.client.Get().
 		Namespace(c.ns).
-		Resource("dashboards").
+		Resource("auditregistrations").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
 		Do(ctx).
@@ -78,8 +78,8 @@ func (c *dashboards) Get(ctx context.Context, name string, options v1.GetOptions
 	return
 }
 
-// List takes label and field selectors, and returns the list of Dashboards that match those selectors.
-func (c *dashboards) List(ctx context.Context, opts v1.ListOptions) (result *v1alpha1.AuditRegistrationList, err error) {
+// List takes label and field selectors, and returns the list of AuditRegistrations that match those selectors.
+func (c *auditRegistrations) List(ctx context.Context, opts v1.ListOptions) (result *v1alpha1.AuditRegistrationList, err error) {
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -87,7 +87,7 @@ func (c *dashboards) List(ctx context.Context, opts v1.ListOptions) (result *v1a
 	result = &v1alpha1.AuditRegistrationList{}
 	err = c.client.Get().
 		Namespace(c.ns).
-		Resource("dashboards").
+		Resource("auditregistrations").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
 		Do(ctx).
@@ -95,8 +95,8 @@ func (c *dashboards) List(ctx context.Context, opts v1.ListOptions) (result *v1a
 	return
 }
 
-// Watch returns a watch.Interface that watches the requested dashboards.
-func (c *dashboards) Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error) {
+// Watch returns a watch.Interface that watches the requested auditRegistrations.
+func (c *auditRegistrations) Watch(ctx context.Context, opts v1.ListOptions) (watch.Interface, error) {
 	var timeout time.Duration
 	if opts.TimeoutSeconds != nil {
 		timeout = time.Duration(*opts.TimeoutSeconds) * time.Second
@@ -104,34 +104,34 @@ func (c *dashboards) Watch(ctx context.Context, opts v1.ListOptions) (watch.Inte
 	opts.Watch = true
 	return c.client.Get().
 		Namespace(c.ns).
-		Resource("dashboards").
+		Resource("auditregistrations").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
 		Watch(ctx)
 }
 
-// Create takes the representation of a dashboard and creates it.  Returns the server's representation of the dashboard, and an error, if there is any.
-func (c *dashboards) Create(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.CreateOptions) (result *v1alpha1.AuditRegistration, err error) {
+// Create takes the representation of a auditRegistration and creates it.  Returns the server's representation of the auditRegistration, and an error, if there is any.
+func (c *auditRegistrations) Create(ctx context.Context, auditRegistration *v1alpha1.AuditRegistration, opts v1.CreateOptions) (result *v1alpha1.AuditRegistration, err error) {
 	result = &v1alpha1.AuditRegistration{}
 	err = c.client.Post().
 		Namespace(c.ns).
-		Resource("dashboards").
+		Resource("auditregistrations").
 		VersionedParams(&opts, scheme.ParameterCodec).
-		Body(dashboard).
+		Body(auditRegistration).
 		Do(ctx).
 		Into(result)
 	return
 }
 
-// Update takes the representation of a dashboard and updates it. Returns the server's representation of the dashboard, and an error, if there is any.
-func (c *dashboards) Update(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (result *v1alpha1.AuditRegistration, err error) {
+// Update takes the representation of a auditRegistration and updates it. Returns the server's representation of the auditRegistration, and an error, if there is any.
+func (c *auditRegistrations) Update(ctx context.Context, auditRegistration *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (result *v1alpha1.AuditRegistration, err error) {
 	result = &v1alpha1.AuditRegistration{}
 	err = c.client.Put().
 		Namespace(c.ns).
-		Resource("dashboards").
-		Name(dashboard.Name).
+		Resource("auditregistrations").
+		Name(auditRegistration.Name).
 		VersionedParams(&opts, scheme.ParameterCodec).
-		Body(dashboard).
+		Body(auditRegistration).
 		Do(ctx).
 		Into(result)
 	return
@@ -139,25 +139,25 @@ func (c *dashboards) Update(ctx context.Context, dashboard *v1alpha1.AuditRegist
 
 // UpdateStatus was generated because the type contains a Status member.
 // Add a +genclient:noStatus comment above the type to avoid generating UpdateStatus().
-func (c *dashboards) UpdateStatus(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (result *v1alpha1.AuditRegistration, err error) {
+func (c *auditRegistrations) UpdateStatus(ctx context.Context, auditRegistration *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (result *v1alpha1.AuditRegistration, err error) {
 	result = &v1alpha1.AuditRegistration{}
 	err = c.client.Put().
 		Namespace(c.ns).
-		Resource("dashboards").
-		Name(dashboard.Name).
+		Resource("auditregistrations").
+		Name(auditRegistration.Name).
 		SubResource("status").
 		VersionedParams(&opts, scheme.ParameterCodec).
-		Body(dashboard).
+		Body(auditRegistration).
 		Do(ctx).
 		Into(result)
 	return
 }
 
-// Delete takes name of the dashboard and deletes it. Returns an error if one occurs.
-func (c *dashboards) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
+// Delete takes name of the auditRegistration and deletes it. Returns an error if one occurs.
+func (c *auditRegistrations) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
 	return c.client.Delete().
 		Namespace(c.ns).
-		Resource("dashboards").
+		Resource("auditregistrations").
 		Name(name).
 		Body(&opts).
 		Do(ctx).
@@ -165,14 +165,14 @@ func (c *dashboards) Delete(ctx context.Context, name string, opts v1.DeleteOpti
 }
 
 // DeleteCollection deletes a collection of objects.
-func (c *dashboards) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error {
+func (c *auditRegistrations) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error {
 	var timeout time.Duration
 	if listOpts.TimeoutSeconds != nil {
 		timeout = time.Duration(*listOpts.TimeoutSeconds) * time.Second
 	}
 	return c.client.Delete().
 		Namespace(c.ns).
-		Resource("dashboards").
+		Resource("auditregistrations").
 		VersionedParams(&listOpts, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(&opts).
@@ -180,12 +180,12 @@ func (c *dashboards) DeleteCollection(ctx context.Context, opts v1.DeleteOptions
 		Error()
 }
 
-// Patch applies the patch and returns the patched dashboard.
-func (c *dashboards) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.AuditRegistration, err error) {
+// Patch applies the patch and returns the patched auditRegistration.
+func (c *auditRegistrations) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.AuditRegistration, err error) {
 	result = &v1alpha1.AuditRegistration{}
 	err = c.client.Patch(pt).
 		Namespace(c.ns).
-		Resource("dashboards").
+		Resource("auditregistrations").
 		Name(name).
 		SubResource(subresources...).
 		VersionedParams(&opts, scheme.ParameterCodec).

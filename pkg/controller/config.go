@@ -54,12 +54,12 @@ func NewConfig(clientConfig *rest.Config) *Config {
 	}
 }
 
-func (c *Config) New() (*GrafanaController, error) {
+func (c *Config) New() (*AuditorController, error) {
 	if err := discovery.IsDefaultSupportedVersion(c.KubeClient); err != nil {
 		return nil, err
 	}
 
-	ctrl := &GrafanaController{
+	ctrl := &AuditorController{
 		config:                 c.config,
 		clientConfig:           c.ClientConfig,
 		kubeClient:             c.KubeClient,

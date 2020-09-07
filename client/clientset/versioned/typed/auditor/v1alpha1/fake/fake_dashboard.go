@@ -39,23 +39,23 @@ type FakeDashboards struct {
 
 var dashboardsResource = schema.GroupVersionResource{Group: "auditor.kubeshield.to", Version: "v1alpha1", Resource: "dashboards"}
 
-var dashboardsKind = schema.GroupVersionKind{Group: "auditor.kubeshield.to", Version: "v1alpha1", Kind: "Dashboard"}
+var dashboardsKind = schema.GroupVersionKind{Group: "auditor.kubeshield.to", Version: "v1alpha1", Kind: "AuditRegistration"}
 
 // Get takes name of the dashboard, and returns the corresponding dashboard object, and an error if there is any.
-func (c *FakeDashboards) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.Dashboard, err error) {
+func (c *FakeDashboards) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.AuditRegistration, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewGetAction(dashboardsResource, c.ns, name), &v1alpha1.Dashboard{})
+		Invokes(testing.NewGetAction(dashboardsResource, c.ns, name), &v1alpha1.AuditRegistration{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v1alpha1.Dashboard), err
+	return obj.(*v1alpha1.AuditRegistration), err
 }
 
 // List takes label and field selectors, and returns the list of Dashboards that match those selectors.
-func (c *FakeDashboards) List(ctx context.Context, opts v1.ListOptions) (result *v1alpha1.DashboardList, err error) {
+func (c *FakeDashboards) List(ctx context.Context, opts v1.ListOptions) (result *v1alpha1.AuditRegistrationList, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewListAction(dashboardsResource, dashboardsKind, c.ns, opts), &v1alpha1.DashboardList{})
+		Invokes(testing.NewListAction(dashboardsResource, dashboardsKind, c.ns, opts), &v1alpha1.AuditRegistrationList{})
 
 	if obj == nil {
 		return nil, err
@@ -65,8 +65,8 @@ func (c *FakeDashboards) List(ctx context.Context, opts v1.ListOptions) (result 
 	if label == nil {
 		label = labels.Everything()
 	}
-	list := &v1alpha1.DashboardList{ListMeta: obj.(*v1alpha1.DashboardList).ListMeta}
-	for _, item := range obj.(*v1alpha1.DashboardList).Items {
+	list := &v1alpha1.AuditRegistrationList{ListMeta: obj.(*v1alpha1.AuditRegistrationList).ListMeta}
+	for _, item := range obj.(*v1alpha1.AuditRegistrationList).Items {
 		if label.Matches(labels.Set(item.Labels)) {
 			list.Items = append(list.Items, item)
 		}
@@ -82,43 +82,43 @@ func (c *FakeDashboards) Watch(ctx context.Context, opts v1.ListOptions) (watch.
 }
 
 // Create takes the representation of a dashboard and creates it.  Returns the server's representation of the dashboard, and an error, if there is any.
-func (c *FakeDashboards) Create(ctx context.Context, dashboard *v1alpha1.Dashboard, opts v1.CreateOptions) (result *v1alpha1.Dashboard, err error) {
+func (c *FakeDashboards) Create(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.CreateOptions) (result *v1alpha1.AuditRegistration, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewCreateAction(dashboardsResource, c.ns, dashboard), &v1alpha1.Dashboard{})
+		Invokes(testing.NewCreateAction(dashboardsResource, c.ns, dashboard), &v1alpha1.AuditRegistration{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v1alpha1.Dashboard), err
+	return obj.(*v1alpha1.AuditRegistration), err
 }
 
 // Update takes the representation of a dashboard and updates it. Returns the server's representation of the dashboard, and an error, if there is any.
-func (c *FakeDashboards) Update(ctx context.Context, dashboard *v1alpha1.Dashboard, opts v1.UpdateOptions) (result *v1alpha1.Dashboard, err error) {
+func (c *FakeDashboards) Update(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (result *v1alpha1.AuditRegistration, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewUpdateAction(dashboardsResource, c.ns, dashboard), &v1alpha1.Dashboard{})
+		Invokes(testing.NewUpdateAction(dashboardsResource, c.ns, dashboard), &v1alpha1.AuditRegistration{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v1alpha1.Dashboard), err
+	return obj.(*v1alpha1.AuditRegistration), err
 }
 
 // UpdateStatus was generated because the type contains a Status member.
 // Add a +genclient:noStatus comment above the type to avoid generating UpdateStatus().
-func (c *FakeDashboards) UpdateStatus(ctx context.Context, dashboard *v1alpha1.Dashboard, opts v1.UpdateOptions) (*v1alpha1.Dashboard, error) {
+func (c *FakeDashboards) UpdateStatus(ctx context.Context, dashboard *v1alpha1.AuditRegistration, opts v1.UpdateOptions) (*v1alpha1.AuditRegistration, error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewUpdateSubresourceAction(dashboardsResource, "status", c.ns, dashboard), &v1alpha1.Dashboard{})
+		Invokes(testing.NewUpdateSubresourceAction(dashboardsResource, "status", c.ns, dashboard), &v1alpha1.AuditRegistration{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v1alpha1.Dashboard), err
+	return obj.(*v1alpha1.AuditRegistration), err
 }
 
 // Delete takes name of the dashboard and deletes it. Returns an error if one occurs.
 func (c *FakeDashboards) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
 	_, err := c.Fake.
-		Invokes(testing.NewDeleteAction(dashboardsResource, c.ns, name), &v1alpha1.Dashboard{})
+		Invokes(testing.NewDeleteAction(dashboardsResource, c.ns, name), &v1alpha1.AuditRegistration{})
 
 	return err
 }
@@ -127,17 +127,17 @@ func (c *FakeDashboards) Delete(ctx context.Context, name string, opts v1.Delete
 func (c *FakeDashboards) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, listOpts v1.ListOptions) error {
 	action := testing.NewDeleteCollectionAction(dashboardsResource, c.ns, listOpts)
 
-	_, err := c.Fake.Invokes(action, &v1alpha1.DashboardList{})
+	_, err := c.Fake.Invokes(action, &v1alpha1.AuditRegistrationList{})
 	return err
 }
 
 // Patch applies the patch and returns the patched dashboard.
-func (c *FakeDashboards) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.Dashboard, err error) {
+func (c *FakeDashboards) Patch(ctx context.Context, name string, pt types.PatchType, data []byte, opts v1.PatchOptions, subresources ...string) (result *v1alpha1.AuditRegistration, err error) {
 	obj, err := c.Fake.
-		Invokes(testing.NewPatchSubresourceAction(dashboardsResource, c.ns, name, pt, data, subresources...), &v1alpha1.Dashboard{})
+		Invokes(testing.NewPatchSubresourceAction(dashboardsResource, c.ns, name, pt, data, subresources...), &v1alpha1.AuditRegistration{})
 
 	if obj == nil {
 		return nil, err
 	}
-	return obj.(*v1alpha1.Dashboard), err
+	return obj.(*v1alpha1.AuditRegistration), err
 }

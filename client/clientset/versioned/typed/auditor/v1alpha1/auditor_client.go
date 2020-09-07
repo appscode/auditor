@@ -27,9 +27,7 @@ import (
 
 type AuditorV1alpha1Interface interface {
 	RESTClient() rest.Interface
-	DashboardsGetter
-	DashboardTemplatesGetter
-	DatasourcesGetter
+	AuditRegistrationsGetter
 }
 
 // AuditorV1alpha1Client is used to interact with features provided by the auditor.kubeshield.to group.
@@ -37,16 +35,8 @@ type AuditorV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *AuditorV1alpha1Client) Dashboards(namespace string) DashboardInterface {
-	return newDashboards(c, namespace)
-}
-
-func (c *AuditorV1alpha1Client) DashboardTemplates(namespace string) DashboardTemplateInterface {
-	return newDashboardTemplates(c, namespace)
-}
-
-func (c *AuditorV1alpha1Client) Datasources(namespace string) DatasourceInterface {
-	return newDatasources(c, namespace)
+func (c *AuditorV1alpha1Client) AuditRegistrations(namespace string) AuditRegistrationInterface {
+	return newAuditRegistrations(c, namespace)
 }
 
 // NewForConfig creates a new AuditorV1alpha1Client for the given config.

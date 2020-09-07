@@ -24,12 +24,8 @@ import (
 
 // Interface provides access to all the informers in this group version.
 type Interface interface {
-	// Dashboards returns a DashboardInformer.
-	Dashboards() DashboardInformer
-	// DashboardTemplates returns a DashboardTemplateInformer.
-	DashboardTemplates() DashboardTemplateInformer
-	// Datasources returns a DatasourceInformer.
-	Datasources() DatasourceInformer
+	// AuditRegistrations returns a AuditRegistrationInformer.
+	AuditRegistrations() AuditRegistrationInformer
 }
 
 type version struct {
@@ -43,17 +39,7 @@ func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakList
 	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
 }
 
-// Dashboards returns a DashboardInformer.
-func (v *version) Dashboards() DashboardInformer {
-	return &dashboardInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
-
-// DashboardTemplates returns a DashboardTemplateInformer.
-func (v *version) DashboardTemplates() DashboardTemplateInformer {
-	return &dashboardTemplateInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
-
-// Datasources returns a DatasourceInformer.
-func (v *version) Datasources() DatasourceInformer {
-	return &datasourceInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+// AuditRegistrations returns a AuditRegistrationInformer.
+func (v *version) AuditRegistrations() AuditRegistrationInformer {
+	return &auditRegistrationInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }

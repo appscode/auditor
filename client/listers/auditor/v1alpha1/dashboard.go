@@ -29,7 +29,7 @@ import (
 // DashboardLister helps list Dashboards.
 type DashboardLister interface {
 	// List lists all Dashboards in the indexer.
-	List(selector labels.Selector) (ret []*v1alpha1.Dashboard, err error)
+	List(selector labels.Selector) (ret []*v1alpha1.AuditRegistration, err error)
 	// Dashboards returns an object that can list and get Dashboards.
 	Dashboards(namespace string) DashboardNamespaceLister
 	DashboardListerExpansion
@@ -46,9 +46,9 @@ func NewDashboardLister(indexer cache.Indexer) DashboardLister {
 }
 
 // List lists all Dashboards in the indexer.
-func (s *dashboardLister) List(selector labels.Selector) (ret []*v1alpha1.Dashboard, err error) {
+func (s *dashboardLister) List(selector labels.Selector) (ret []*v1alpha1.AuditRegistration, err error) {
 	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
-		ret = append(ret, m.(*v1alpha1.Dashboard))
+		ret = append(ret, m.(*v1alpha1.AuditRegistration))
 	})
 	return ret, err
 }
@@ -61,9 +61,9 @@ func (s *dashboardLister) Dashboards(namespace string) DashboardNamespaceLister 
 // DashboardNamespaceLister helps list and get Dashboards.
 type DashboardNamespaceLister interface {
 	// List lists all Dashboards in the indexer for a given namespace.
-	List(selector labels.Selector) (ret []*v1alpha1.Dashboard, err error)
-	// Get retrieves the Dashboard from the indexer for a given namespace and name.
-	Get(name string) (*v1alpha1.Dashboard, error)
+	List(selector labels.Selector) (ret []*v1alpha1.AuditRegistration, err error)
+	// Get retrieves the AuditRegistration from the indexer for a given namespace and name.
+	Get(name string) (*v1alpha1.AuditRegistration, error)
 	DashboardNamespaceListerExpansion
 }
 
@@ -75,15 +75,15 @@ type dashboardNamespaceLister struct {
 }
 
 // List lists all Dashboards in the indexer for a given namespace.
-func (s dashboardNamespaceLister) List(selector labels.Selector) (ret []*v1alpha1.Dashboard, err error) {
+func (s dashboardNamespaceLister) List(selector labels.Selector) (ret []*v1alpha1.AuditRegistration, err error) {
 	err = cache.ListAllByNamespace(s.indexer, s.namespace, selector, func(m interface{}) {
-		ret = append(ret, m.(*v1alpha1.Dashboard))
+		ret = append(ret, m.(*v1alpha1.AuditRegistration))
 	})
 	return ret, err
 }
 
-// Get retrieves the Dashboard from the indexer for a given namespace and name.
-func (s dashboardNamespaceLister) Get(name string) (*v1alpha1.Dashboard, error) {
+// Get retrieves the AuditRegistration from the indexer for a given namespace and name.
+func (s dashboardNamespaceLister) Get(name string) (*v1alpha1.AuditRegistration, error) {
 	obj, exists, err := s.indexer.GetByKey(s.namespace + "/" + name)
 	if err != nil {
 		return nil, err
@@ -91,5 +91,5 @@ func (s dashboardNamespaceLister) Get(name string) (*v1alpha1.Dashboard, error) 
 	if !exists {
 		return nil, errors.NewNotFound(v1alpha1.Resource("dashboard"), name)
 	}
-	return obj.(*v1alpha1.Dashboard), nil
+	return obj.(*v1alpha1.AuditRegistration), nil
 }

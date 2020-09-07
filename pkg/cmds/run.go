@@ -28,7 +28,7 @@ import (
 )
 
 func NewCmdRun(out, errOut io.Writer, stopCh <-chan struct{}) *cobra.Command {
-	o := server.NewDashboardOptions(out, errOut)
+	o := server.NewAuditorOptions(out, errOut)
 
 	cmd := &cobra.Command{
 		Use:               "run",

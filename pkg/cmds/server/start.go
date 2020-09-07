@@ -34,7 +34,7 @@ import (
 
 const defaultEtcdPathPrefix = "/registry/auditor.kubeshield.to"
 
-type DashboardOptions struct {
+type AuditorOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions
 	ExtraOptions       *ExtraOptions
 
@@ -42,8 +42,8 @@ type DashboardOptions struct {
 	StdErr io.Writer
 }
 
-func NewDashboardOptions(out, errOut io.Writer) *DashboardOptions {
-	o := &DashboardOptions{
+func NewAuditorOptions(out, errOut io.Writer) *AuditorOptions {
+	o := &AuditorOptions{
 		// TODO we will nil out the etcd storage options.  This requires a later level of k8s.io/apiserver
 		RecommendedOptions: genericoptions.NewRecommendedOptions(
 			defaultEtcdPathPrefix,
@@ -60,20 +60,20 @@ func NewDashboardOptions(out, errOut io.Writer) *DashboardOptions {
 	return o
 }
 
-func (o DashboardOptions) AddFlags(fs *pflag.FlagSet) {
+func (o AuditorOptions) AddFlags(fs *pflag.FlagSet) {
 	o.RecommendedOptions.AddFlags(fs)
 	o.ExtraOptions.AddFlags(fs)
 }
 
-func (o DashboardOptions) Validate(args []string) error {
+func (o AuditorOptions) Validate(args []string) error {
 	return nil
 }
 
-func (o *DashboardOptions) Complete() error {
+func (o *AuditorOptions) Complete() error {
 	return nil
 }
 
-func (o DashboardOptions) Config() (*server.GrafanaOperatorConfig, error) {
+func (o AuditorOptions) Config() (*server.GrafanaOperatorConfig, error) {
 	// TODO have a "real" external address
 	if err := o.RecommendedOptions.SecureServing.MaybeDefaultWithSelfSignedCerts("localhost", nil, []net.IP{net.ParseIP("127.0.0.1")}); err != nil {
 		return nil, fmt.Errorf("error creating self-signed certificates: %v", err)
@@ -99,7 +99,7 @@ func (o DashboardOptions) Config() (*server.GrafanaOperatorConfig, error) {
 	return config, nil
 }
 
-func (o DashboardOptions) Run(stopCh <-chan struct{}) error {
+func (o AuditorOptions) Run(stopCh <-chan struct{}) error {
 	config, err := o.Config()
 	if err != nil {
 		return err

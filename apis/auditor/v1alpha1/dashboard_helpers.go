@@ -22,6 +22,6 @@ import (
 	"kmodules.xyz/client-go/apiextensions"
 )
 
-func (_ Dashboard) CustomResourceDefinition() *apiextensions.CustomResourceDefinition {
+func (_ AuditRegistration) CustomResourceDefinition() *apiextensions.CustomResourceDefinition {
 	return crds.MustCustomResourceDefinition(SchemeGroupVersion.WithResource(ResourceDashboards))
 }

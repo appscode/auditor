@@ -18,8 +18,4 @@ limitations under the License.
 
 package v1alpha1
 
-type DashboardExpansion interface{}
-
-type DashboardTemplateExpansion interface{}
-
-type DatasourceExpansion interface{}
+type AuditRegistrationExpansion interface{}

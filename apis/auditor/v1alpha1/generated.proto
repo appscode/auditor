@@ -24,7 +24,6 @@ package kubeshield.dev.auditor.apis.auditor.v1alpha1;
 import "k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto";
 import "k8s.io/apimachinery/pkg/runtime/generated.proto";
 import "k8s.io/apimachinery/pkg/runtime/schema/generated.proto";
-import "kmodules.xyz/client-go/api/v1/generated.proto";
 
 // Package-wide variables from generator "generated".
 option go_package = "v1alpha1";
@@ -32,140 +31,64 @@ option go_package = "v1alpha1";
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:path=dashboards,singular=dashboard,categories={auditor,kubeshield,appscode}
 // +kubebuilder:subresource:status
-message Dashboard {
+message AuditRegistration {
   optional k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta metadata = 1;
 
-  optional DashboardSpec spec = 2;
+  optional AuditRegistrationSpec spec = 2;
 
-  optional DashboardStatus status = 3;
+  optional AuditRegistrationStatus status = 3;
 }
 
-message DashboardList {
+message AuditRegistrationList {
   optional k8s.io.apimachinery.pkg.apis.meta.v1.ListMeta metadata = 1;
 
-  repeated Dashboard items = 2;
+  repeated AuditRegistration items = 2;
 }
 
-message DashboardReference {
-  optional int64 id = 1;
-
-  optional string uid = 2;
-
-  optional int64 orgID = 3;
-
-  optional string title = 4;
-
-  optional string url = 5;
-
-  optional int64 version = 6;
+message AuditRegistrationSpec {
+  repeated PolicyRule rules = 1;
 }
 
-message DashboardSpec {
-  optional TargetRef auditor = 1;
-
-  // +optional
-  // +kubebuilder:pruning:PreserveUnknownFields
-  optional k8s.io.apimachinery.pkg.runtime.RawExtension model = 2;
-
-  optional int64 folderId = 3;
-
-  optional bool overwrite = 4;
-}
-
-message DashboardStatus {
-  // ObservedGeneration is the most recent generation observed for this resource. It corresponds to the
-  // resource's generation, which is updated on mutation by the API Server.
-  // +optional
-  optional int64 observedGeneration = 1;
-
-  // Phase indicates the state this Vault cluster jumps in.
-  // +optional
-  optional string phase = 2;
-
-  // The reason for the current phase
-  // +optional
-  optional string reason = 3;
-
-  // Dashboard indicates the updated dashboard database
-  // +optional
-  optional DashboardReference dashboard = 4;
-
-  // Represents the latest available observations of a Dashboard current state.
-  // +optional
-  repeated kmodules.xyz.client_go.api.v1.Condition conditions = 5;
-}
-
-// +kubebuilder:object:root=true
-// +kubebuilder:resource:path=dashboardtemplates,singular=dashboardtemplate,scope=Cluster,categories={auditor,kubeshield,appscode}
-// +kubebuilder:subresource:status
-message DashboardTemplate {
-  optional k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta metadata = 1;
-
-  optional DashboardTemplateSpec spec = 2;
-}
-
-message DashboardTemplateList {
-  optional k8s.io.apimachinery.pkg.apis.meta.v1.ListMeta metadata = 1;
-
-  repeated DashboardTemplate items = 2;
-}
-
-message DashboardTemplateReference {
-  optional int64 id = 1;
-
-  optional string uid = 2;
-
-  optional string title = 3;
-
-  repeated string tags = 4;
-
-  optional string timezone = 5;
-
-  optional int64 schemaVersion = 6;
-
-  optional int64 version = 7;
-}
-
-message DashboardTemplateSpec {
-  optional DashboardTemplateReference dashboardtemplate = 1;
-
-  optional int64 folderId = 2;
-
-  optional bool overwrite = 3;
-}
-
-// +kubebuilder:object:root=true
-// +kubebuilder:resource:path=datasources,singular=datasource,categories={auditor,kubeshield,appscode}
-// +kubebuilder:subresource:status
-message Datasource {
-  optional k8s.io.apimachinery.pkg.apis.meta.v1.ObjectMeta metadata = 1;
-
-  optional DatasourceSpec spec = 2;
-
-  optional DatasourceStatus status = 3;
-}
-
-message DatasourceList {
-  optional k8s.io.apimachinery.pkg.apis.meta.v1.ListMeta metadata = 1;
-
-  repeated Datasource items = 2;
-}
-
-message DatasourceSpec {
-}
-
-message DatasourceStatus {
+message AuditRegistrationStatus {
   // ObservedGeneration is the most recent generation observed for this resource. It corresponds to the
   // resource's generation, which is updated on mutation by the API Server.
   // +optional
   optional int64 observedGeneration = 1;
 }
 
-message TargetRef {
-  optional string apiVersion = 1;
+// GroupResources represents resource kinds in an API group.
+message GroupResources {
+  // Group is the name of the API group that contains the resources.
+  // The empty string represents the core API group.
+  // +optional
+  optional string group = 1;
 
-  optional string kind = 2;
+  // Resources is a list of resources within the API group. Subresources are
+  // matched using a "/" to indicate the subresource. For example, "pods/log"
+  // would match request to the log subresource of pods. The top level resource
+  // does not match subresources, "pods" doesn't match "pods/log".
+  // +optional
+  repeated string resources = 2;
 
-  optional string name = 3;
+  // ResourceNames is a list of resource instance names that the policy matches.
+  // Using this field requires Resources to be specified.
+  // An empty list implies that every instance of the resource is matched.
+  // +optional
+  repeated string resourceNames = 3;
+}
+
+message PolicyRule {
+  // Operation is the operation being performed
+  repeated string operations = 1;
+
+  // Resources that this rule matches. An empty list implies all kinds in all API groups.
+  // +optional
+  repeated GroupResources resources = 2;
+
+  // Namespaces that this rule matches.
+  // The empty string "" matches non-namespaced resources.
+  // An empty list implies every namespace.
+  // +optional
+  repeated string namespaces = 3;
 }
 

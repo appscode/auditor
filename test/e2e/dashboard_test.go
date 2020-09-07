@@ -77,7 +77,7 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 
 		}
 
-		waitForDashboardToBeTerminated = func(dashboard *api.Dashboard) {
+		waitForDashboardToBeTerminated = func(dashboard *api.AuditRegistration) {
 			By("Deleting dashboard " + dashboard.Name)
 			err := f.DeleteDashboard()
 			Expect(err).NotTo(HaveOccurred())
@@ -94,18 +94,18 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 		f = root.Invoke()
 	})
 
-	Describe("Dashboard Operation", func() {
+	Describe("AuditRegistration Operation", func() {
 		var (
-			dashboard *api.Dashboard
+			dashboard *api.AuditRegistration
 		)
 
 		BeforeEach(func() {
-			dashboard = &api.Dashboard{
+			dashboard = &api.AuditRegistration{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:      f.Name(),
 					Namespace: f.Namespace(),
 				},
-				Spec: api.DashboardSpec{
+				Spec: api.AuditRegistrationSpec{
 					Grafana: &api.TargetRef{
 						Name: f.AppBindingName(),
 					},

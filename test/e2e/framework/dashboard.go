@@ -25,11 +25,11 @@ import (
 	meta_util "kmodules.xyz/client-go/meta"
 )
 
-func (f *Framework) GetDashboard() (*api.Dashboard, error) {
+func (f *Framework) GetDashboard() (*api.AuditRegistration, error) {
 	return f.extClient.AuditorV1alpha1().Dashboards(f.namespace).Get(context.TODO(), f.name, metav1.GetOptions{})
 }
 
-func (f *Framework) CreateDashboard(dashboard *api.Dashboard) error {
+func (f *Framework) CreateDashboard(dashboard *api.AuditRegistration) error {
 	_, err := f.extClient.AuditorV1alpha1().Dashboards(dashboard.Namespace).Create(context.TODO(), dashboard, metav1.CreateOptions{})
 	return err
 }

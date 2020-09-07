@@ -29,16 +29,8 @@ type FakeAuditorV1alpha1 struct {
 	*testing.Fake
 }
 
-func (c *FakeAuditorV1alpha1) Dashboards(namespace string) v1alpha1.DashboardInterface {
-	return &FakeDashboards{c, namespace}
-}
-
-func (c *FakeAuditorV1alpha1) DashboardTemplates(namespace string) v1alpha1.DashboardTemplateInterface {
-	return &FakeDashboardTemplates{c, namespace}
-}
-
-func (c *FakeAuditorV1alpha1) Datasources(namespace string) v1alpha1.DatasourceInterface {
-	return &FakeDatasources{c, namespace}
+func (c *FakeAuditorV1alpha1) AuditRegistrations(namespace string) v1alpha1.AuditRegistrationInterface {
+	return &FakeAuditRegistrations{c, namespace}
 }
 
 // RESTClient returns a RESTClient that is used to communicate

@@ -18,26 +18,10 @@ limitations under the License.
 
 package v1alpha1
 
-// DashboardListerExpansion allows custom methods to be added to
-// DashboardLister.
-type DashboardListerExpansion interface{}
+// AuditRegistrationListerExpansion allows custom methods to be added to
+// AuditRegistrationLister.
+type AuditRegistrationListerExpansion interface{}
 
-// DashboardNamespaceListerExpansion allows custom methods to be added to
-// DashboardNamespaceLister.
-type DashboardNamespaceListerExpansion interface{}
-
-// DashboardTemplateListerExpansion allows custom methods to be added to
-// DashboardTemplateLister.
-type DashboardTemplateListerExpansion interface{}
-
-// DashboardTemplateNamespaceListerExpansion allows custom methods to be added to
-// DashboardTemplateNamespaceLister.
-type DashboardTemplateNamespaceListerExpansion interface{}
-
-// DatasourceListerExpansion allows custom methods to be added to
-// DatasourceLister.
-type DatasourceListerExpansion interface{}
-
-// DatasourceNamespaceListerExpansion allows custom methods to be added to
-// DatasourceNamespaceLister.
-type DatasourceNamespaceListerExpansion interface{}
+// AuditRegistrationNamespaceListerExpansion allows custom methods to be added to
+// AuditRegistrationNamespaceLister.
+type AuditRegistrationNamespaceListerExpansion interface{}

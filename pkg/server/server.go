@@ -70,7 +70,7 @@ type GrafanaOperatorConfig struct {
 // GrafanaOperator contains state for a Kubernetes cluster master/api server.
 type GrafanaOperator struct {
 	GenericAPIServer *genericapiserver.GenericAPIServer
-	Controller       *controller.GrafanaController
+	Controller       *controller.AuditorController
 }
 
 func (op *GrafanaOperator) Run(stopCh <-chan struct{}) error {

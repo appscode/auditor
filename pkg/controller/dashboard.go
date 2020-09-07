@@ -16,5 +16,5 @@ limitations under the License.
 
 package controller
 
-func (c *GrafanaController) initDashboardWatcher() {
+func (c *AuditorController) initDashboardWatcher() {
 }

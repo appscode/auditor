@@ -38,13 +38,13 @@ func CreateOrPatchDashboard(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	meta metav1.ObjectMeta,
-	transform func(alert *api.Dashboard) *api.Dashboard,
+	transform func(alert *api.AuditRegistration) *api.AuditRegistration,
 	opts metav1.PatchOptions,
-) (*api.Dashboard, kutil.VerbType, error) {
+) (*api.AuditRegistration, kutil.VerbType, error) {
 	cur, err := c.Dashboards(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
 	if kerr.IsNotFound(err) {
-		glog.V(3).Infof("Creating Dashboard %s/%s.", meta.Namespace, meta.Name)
-		out, err := c.Dashboards(meta.Namespace).Create(ctx, transform(&api.Dashboard{
+		glog.V(3).Infof("Creating AuditRegistration %s/%s.", meta.Namespace, meta.Name)
+		out, err := c.Dashboards(meta.Namespace).Create(ctx, transform(&api.AuditRegistration{
 			TypeMeta: metav1.TypeMeta{
 				Kind:       api.ResourceKindDashboard,
 				APIVersion: api.SchemeGroupVersion.String(),
@@ -64,19 +64,19 @@ func CreateOrPatchDashboard(
 func PatchDashboard(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
-	cur *api.Dashboard,
-	transform func(*api.Dashboard) *api.Dashboard,
+	cur *api.AuditRegistration,
+	transform func(*api.AuditRegistration) *api.AuditRegistration,
 	opts metav1.PatchOptions,
-) (*api.Dashboard, kutil.VerbType, error) {
+) (*api.AuditRegistration, kutil.VerbType, error) {
 	return PatchDashboardObject(ctx, c, cur, transform(cur.DeepCopy()), opts)
 }
 
 func PatchDashboardObject(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
-	cur, mod *api.Dashboard,
+	cur, mod *api.AuditRegistration,
 	opts metav1.PatchOptions,
-) (*api.Dashboard, kutil.VerbType, error) {
+) (*api.AuditRegistration, kutil.VerbType, error) {
 	curJson, err := json.Marshal(cur)
 	if err != nil {
 		return nil, kutil.VerbUnchanged, err
@@ -94,7 +94,7 @@ func PatchDashboardObject(
 	if len(patch) == 0 || string(patch) == "{}" {
 		return cur, kutil.VerbUnchanged, nil
 	}
-	glog.V(3).Infof("Patching Dashboard %s/%s with %s.", cur.Namespace, cur.Name, string(patch))
+	glog.V(3).Infof("Patching AuditRegistration %s/%s with %s.", cur.Namespace, cur.Name, string(patch))
 	out, err := c.Dashboards(cur.Namespace).Patch(ctx, cur.Name, types.MergePatchType, patch, opts)
 	return out, kutil.VerbPatched, err
 }
@@ -103,9 +103,9 @@ func TryUpdateDashboard(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	meta metav1.ObjectMeta,
-	transform func(*api.Dashboard) *api.Dashboard,
+	transform func(*api.AuditRegistration) *api.AuditRegistration,
 	opts metav1.UpdateOptions,
-) (result *api.Dashboard, err error) {
+) (result *api.AuditRegistration, err error) {
 	attempt := 0
 	err = wait.PollImmediate(kutil.RetryInterval, kutil.RetryTimeout, func() (bool, error) {
 		attempt++
@@ -116,12 +116,12 @@ func TryUpdateDashboard(
 			result, e2 = c.Dashboards(cur.Namespace).Update(ctx, transform(cur.DeepCopy()), opts)
 			return e2 == nil, nil
 		}
-		glog.Errorf("Attempt %d failed to update Dashboard %s/%s due to %v.", attempt, cur.Namespace, cur.Name, e2)
+		glog.Errorf("Attempt %d failed to update AuditRegistration %s/%s due to %v.", attempt, cur.Namespace, cur.Name, e2)
 		return false, nil
 	})
 
 	if err != nil {
-		err = errors.Errorf("failed to update Dashboard %s/%s after %d attempts due to %v", meta.Namespace, meta.Name, attempt, err)
+		err = errors.Errorf("failed to update AuditRegistration %s/%s after %d attempts due to %v", meta.Namespace, meta.Name, attempt, err)
 	}
 	return
 }
@@ -130,11 +130,11 @@ func UpdateDashboardStatus(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	meta metav1.ObjectMeta,
-	transform func(*api.DashboardStatus) *api.DashboardStatus,
+	transform func(*api.AuditRegistrationStatus) *api.AuditRegistrationStatus,
 	opts metav1.UpdateOptions,
-) (result *api.Dashboard, err error) {
-	apply := func(x *api.Dashboard) *api.Dashboard {
-		return &api.Dashboard{
+) (result *api.AuditRegistration, err error) {
+	apply := func(x *api.AuditRegistration) *api.AuditRegistration {
+		return &api.AuditRegistration{
 			TypeMeta:   x.TypeMeta,
 			ObjectMeta: x.ObjectMeta,
 			Spec:       x.Spec,
@@ -169,7 +169,7 @@ func UpdateDashboardStatus(
 	})
 
 	if err != nil {
-		err = fmt.Errorf("failed to update status of Dashboard %s/%s after %d attempts due to %v", meta.Namespace, meta.Name, attempt, err)
+		err = fmt.Errorf("failed to update status of AuditRegistration %s/%s after %d attempts due to %v", meta.Namespace, meta.Name, attempt, err)
 	}
 	return
 }

@@ -40,7 +40,7 @@ import (
 	"kmodules.xyz/client-go/apiextensions"
 )
 
-type GrafanaController struct {
+type AuditorController struct {
 	config
 	clientConfig *rest.Config
 
@@ -54,20 +54,20 @@ type GrafanaController struct {
 	crInformerFactory      grafanainformers.SharedInformerFactory
 }
 
-func (c *GrafanaController) ensureCustomResourceDefinitions() error {
+func (c *AuditorController) ensureCustomResourceDefinitions() error {
 	crds := []*apiextensions.CustomResourceDefinition{
-		api.Dashboard{}.CustomResourceDefinition(),
+		api.AuditRegistration{}.CustomResourceDefinition(),
 	}
 	return apiextensions.RegisterCRDs(c.crdClient, crds)
 }
 
-func (c *GrafanaController) Run(stopCh <-chan struct{}) {
+func (c *AuditorController) Run(stopCh <-chan struct{}) {
 	go c.RunInformers(stopCh)
 
 	<-stopCh
 }
 
-func (c *GrafanaController) RunInformers(stopCh <-chan struct{}) {
+func (c *AuditorController) RunInformers(stopCh <-chan struct{}) {
 	defer runtime.HandleCrash()
 
 	glog.Info("Starting Auditor")
@@ -84,16 +84,16 @@ func (c *GrafanaController) RunInformers(stopCh <-chan struct{}) {
 	glog.Info("Stopping Auditor")
 }
 
-func (c *GrafanaController) pushFailureEvent(dashboard *api.Dashboard, reason string) {
+func (c *AuditorController) pushFailureEvent(dashboard *api.AuditRegistration, reason string) {
 	c.recorder.Eventf(
 		dashboard,
 		core.EventTypeWarning,
 		eventer.EventReasonFailedToStart,
-		`Failed to complete operation for Dashboard: "%v". Reason: %v`,
+		`Failed to complete operation for AuditRegistration: "%v". Reason: %v`,
 		dashboard.Name,
 		reason,
 	)
-	dashboard, err := util.UpdateDashboardStatus(context.TODO(), c.crClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.DashboardStatus) *api.DashboardStatus {
+	dashboard, err := util.UpdateDashboardStatus(context.TODO(), c.crClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.AuditRegistrationStatus) *api.AuditRegistrationStatus {
 		in.Phase = api.DashboardPhaseFailed
 		in.Reason = reason
 		in.Conditions = kmapi.SetCondition(in.Conditions, kmapi.Condition{
