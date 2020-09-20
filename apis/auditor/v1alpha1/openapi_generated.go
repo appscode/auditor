@@ -15367,16 +15367,43 @@ func schema_auditor_apis_auditor_v1alpha1_AuditRegistrationStatus(ref common.Ref
 			SchemaProps: spec.SchemaProps{
 				Type: []string{"object"},
 				Properties: map[string]spec.Schema{
+					"phase": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
+					"reason": {
+						SchemaProps: spec.SchemaProps{
+							Type:   []string{"string"},
+							Format: "",
+						},
+					},
 					"observedGeneration": {
 						SchemaProps: spec.SchemaProps{
-							Description: "ObservedGeneration is the most recent generation observed for this resource. It corresponds to the resource's generation, which is updated on mutation by the API Server.",
+							Description: "observedGeneration is the most recent generation observed for this resource. It corresponds to the resource's generation, which is updated on mutation by the API Server.",
 							Type:        []string{"integer"},
 							Format:      "int64",
+						},
+					},
+					"conditions": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Conditions applied to the request, such as approval or denial.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Ref: ref("kmodules.xyz/client-go/api/v1.Condition"),
+									},
+								},
+							},
 						},
 					},
 				},
 			},
 		},
+		Dependencies: []string{
+			"kmodules.xyz/client-go/api/v1.Condition"},
 	}
 }
 

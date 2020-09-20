@@ -18,6 +18,7 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	kmapi "kmodules.xyz/client-go/api/v1"
 )
 
 const (
@@ -97,8 +98,13 @@ type AuditRegistrationList struct {
 }
 
 type AuditRegistrationStatus struct {
-	// ObservedGeneration is the most recent generation observed for this resource. It corresponds to the
+	Phase  string `json:"phase,omitempty" protobuf:"bytes,1,opt,name=phase"`
+	Reason string `json:"reason,omitempty" protobuf:"bytes,2,opt,name=reason"`
+	// observedGeneration is the most recent generation observed for this resource. It corresponds to the
 	// resource's generation, which is updated on mutation by the API Server.
 	// +optional
-	ObservedGeneration int64 `json:"observedGeneration,omitempty" protobuf:"varint,1,opt,name=observedGeneration"`
+	ObservedGeneration int64 `json:"observedGeneration,omitempty" protobuf:"varint,3,opt,name=observedGeneration"`
+	// Conditions applied to the request, such as approval or denial.
+	// +optional
+	Conditions []kmapi.Condition `json:"conditions,omitempty" protobuf:"bytes,4,rep,name=conditions"`
 }

@@ -22,15 +22,14 @@ import (
 	"context"
 	time "time"
 
-	auditorv1alpha1 "kubeshield.dev/auditor/apis/auditor/v1alpha1"
-	versioned "kubeshield.dev/auditor/client/clientset/versioned"
-	internalinterfaces "kubeshield.dev/auditor/client/informers/externalversions/internalinterfaces"
-	v1alpha1 "kubeshield.dev/auditor/client/listers/auditor/v1alpha1"
-
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
+	auditorv1alpha1 "kubeshield.dev/auditor/apis/auditor/v1alpha1"
+	versioned "kubeshield.dev/auditor/client/clientset/versioned"
+	internalinterfaces "kubeshield.dev/auditor/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "kubeshield.dev/auditor/client/listers/auditor/v1alpha1"
 )
 
 // AuditRegistrationInformer provides access to a shared informer and lister for

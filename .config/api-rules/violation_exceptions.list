@@ -166,6 +166,7 @@ API rule violation: list_type_missing,kmodules.xyz/client-go/api/v1,X509Subject,
 API rule violation: list_type_missing,kmodules.xyz/client-go/api/v1,X509Subject,StreetAddresses
 API rule violation: list_type_missing,kubeshield.dev/auditor/apis/auditor/v1alpha1,AuditRegistrationList,Items
 API rule violation: list_type_missing,kubeshield.dev/auditor/apis/auditor/v1alpha1,AuditRegistrationSpec,Rules
+API rule violation: list_type_missing,kubeshield.dev/auditor/apis/auditor/v1alpha1,AuditRegistrationStatus,Conditions
 API rule violation: list_type_missing,kubeshield.dev/auditor/apis/auditor/v1alpha1,GroupResources,ResourceNames
 API rule violation: list_type_missing,kubeshield.dev/auditor/apis/auditor/v1alpha1,GroupResources,Resources
 API rule violation: list_type_missing,kubeshield.dev/auditor/apis/auditor/v1alpha1,PolicyRule,Namespaces

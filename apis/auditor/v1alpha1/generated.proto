@@ -24,6 +24,7 @@ package kubeshield.dev.auditor.apis.auditor.v1alpha1;
 import "k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto";
 import "k8s.io/apimachinery/pkg/runtime/generated.proto";
 import "k8s.io/apimachinery/pkg/runtime/schema/generated.proto";
+import "kmodules.xyz/client-go/api/v1/generated.proto";
 
 // Package-wide variables from generator "generated".
 option go_package = "v1alpha1";
@@ -50,10 +51,18 @@ message AuditRegistrationSpec {
 }
 
 message AuditRegistrationStatus {
-  // ObservedGeneration is the most recent generation observed for this resource. It corresponds to the
+  optional string phase = 1;
+
+  optional string reason = 2;
+
+  // observedGeneration is the most recent generation observed for this resource. It corresponds to the
   // resource's generation, which is updated on mutation by the API Server.
   // +optional
-  optional int64 observedGeneration = 1;
+  optional int64 observedGeneration = 3;
+
+  // Conditions applied to the request, such as approval or denial.
+  // +optional
+  repeated kmodules.xyz.client_go.api.v1.Condition conditions = 4;
 }
 
 // GroupResources represents resource kinds in an API group.

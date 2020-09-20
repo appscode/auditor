@@ -21,11 +21,10 @@ package versioned
 import (
 	"fmt"
 
-	auditorv1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1"
-
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
+	auditorv1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1"
 )
 
 type Interface interface {
