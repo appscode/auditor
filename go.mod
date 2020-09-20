@@ -54,6 +54,8 @@ require (
 	kmodules.xyz/client-go v0.0.0-20200917200341-3f5fe7b6c182
 	kmodules.xyz/crd-schema-fuzz v0.0.0-20200521005638-2433a187de95
 	kmodules.xyz/custom-resources v0.0.0-20200604135349-9e9f5c4fdba9
+	kmodules.xyz/monitoring-agent-api v0.0.0-20200915181828-7e94cbcaa0f3 // indirect
+	kmodules.xyz/offshoot-api v0.0.0-20200521035628-e135bf07b226 // indirect
 	kmodules.xyz/webhook-runtime v0.0.0-20200522123600-ca70a7e28ed0
 	sigs.k8s.io/yaml v1.2.0
 )

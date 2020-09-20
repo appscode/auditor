@@ -1,17 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "KubeVault",
+    "title": "Auditor",
     "contact": {
       "name": "AppsCode Inc.",
       "url": "https://appscode.com",
-      "email": "support@appscode.com"
+      "email": "hello@appscode.com"
     },
     "license": {
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version": "v0.2.0"
+    "version": "v0.0.1"
   },
   "paths": {
     "/apis/": {

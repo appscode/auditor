@@ -1,11 +1,11 @@
 /*
 Copyright AppsCode Inc. and Contributors
 
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the AppsCode Community License 1.0.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    https://github.com/appscode/licenses/raw/1.0.0/AppsCode-Community-1.0.0.md
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -45,16 +45,20 @@ func generateSwaggerJson() {
 		Scheme: Scheme,
 		Codecs: Codecs,
 		Info: spec.InfoProps{
-			Title:   "KubeVault",
-			Version: "v0.2.0",
+			Title:   "Auditor",
+			Version: "v0.0.1",
 			Contact: &spec.ContactInfo{
-				Name:  "AppsCode Inc.",
-				URL:   "https://appscode.com",
-				Email: "support@appscode.com",
+				ContactInfoProps: spec.ContactInfoProps{
+					Name:  "AppsCode Inc.",
+					URL:   "https://appscode.com",
+					Email: "hello@appscode.com",
+				},
 			},
 			License: &spec.License{
-				Name: "Apache 2.0",
-				URL:  "https://www.apache.org/licenses/LICENSE-2.0.html",
+				LicenseProps: spec.LicenseProps{
+					Name: "Apache 2.0",
+					URL:  "https://www.apache.org/licenses/LICENSE-2.0.html",
+				},
 			},
 		},
 		OpenAPIDefinitions: []common.GetOpenAPIDefinitions{

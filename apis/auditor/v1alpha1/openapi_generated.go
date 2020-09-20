@@ -3,11 +3,11 @@
 /*
 Copyright AppsCode Inc. and Contributors
 
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the AppsCode Community License 1.0.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    https://github.com/appscode/licenses/raw/1.0.0/AppsCode-Community-1.0.0.md
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -322,6 +322,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"kmodules.xyz/client-go/api/v1.Condition":                              schema_kmodulesxyz_client_go_api_v1_Condition(ref),
 		"kmodules.xyz/client-go/api/v1.TLSConfig":                              schema_kmodulesxyz_client_go_api_v1_TLSConfig(ref),
 		"kmodules.xyz/client-go/api/v1.X509Subject":                            schema_kmodulesxyz_client_go_api_v1_X509Subject(ref),
+		"kmodules.xyz/client-go/api/v1.stringSetMerger":                        schema_kmodulesxyz_client_go_api_v1_stringSetMerger(ref),
 		"kubeshield.dev/auditor/apis/auditor/v1alpha1.AuditRegistration":       schema_auditor_apis_auditor_v1alpha1_AuditRegistration(ref),
 		"kubeshield.dev/auditor/apis/auditor/v1alpha1.AuditRegistrationList":   schema_auditor_apis_auditor_v1alpha1_AuditRegistrationList(ref),
 		"kubeshield.dev/auditor/apis/auditor/v1alpha1.AuditRegistrationSpec":   schema_auditor_apis_auditor_v1alpha1_AuditRegistrationSpec(ref),
@@ -14991,9 +14992,9 @@ func schema_kmodulesxyz_client_go_api_v1_CertificateSpec(ref common.ReferenceCal
 							},
 						},
 					},
-					"uriSANs": {
+					"uris": {
 						SchemaProps: spec.SchemaProps{
-							Description: "URISANs is a list of URI Subject Alternative Names to be set on this Certificate.",
+							Description: "URIs is a list of URI subjectAltNames to be set on the Certificate.",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -15005,9 +15006,9 @@ func schema_kmodulesxyz_client_go_api_v1_CertificateSpec(ref common.ReferenceCal
 							},
 						},
 					},
-					"emailSANs": {
+					"emailAddresses": {
 						SchemaProps: spec.SchemaProps{
-							Description: "EmailSANs is a list of email subjectAltNames to be set on the Certificate.",
+							Description: "EmailAddresses is a list of email subjectAltNames to be set on the Certificate.",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -15230,6 +15231,16 @@ func schema_kmodulesxyz_client_go_api_v1_X509Subject(ref common.ReferenceCallbac
 						},
 					},
 				},
+			},
+		},
+	}
+}
+
+func schema_kmodulesxyz_client_go_api_v1_stringSetMerger(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
 			},
 		},
 	}
