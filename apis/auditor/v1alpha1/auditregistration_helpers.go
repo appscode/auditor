@@ -23,5 +23,5 @@ import (
 )
 
 func (_ AuditRegistration) CustomResourceDefinition() *apiextensions.CustomResourceDefinition {
-	return crds.MustCustomResourceDefinition(SchemeGroupVersion.WithResource(ResourceDashboards))
+	return crds.MustCustomResourceDefinition(SchemeGroupVersion.WithResource(ResourceAuditRegistrations))
 }

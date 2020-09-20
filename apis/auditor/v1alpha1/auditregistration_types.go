@@ -21,9 +21,9 @@ import (
 )
 
 const (
-	ResourceKindDashboard = "AuditRegistration"
-	ResourceDashboard     = "auditregistration"
-	ResourceDashboards    = "auditregistrations"
+	ResourceKindAuditRegistration = "AuditRegistration"
+	ResourceAuditRegistration     = "auditregistration"
+	ResourceAuditRegistrations    = "auditregistrations"
 )
 
 // +genclient

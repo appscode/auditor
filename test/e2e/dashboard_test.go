@@ -45,7 +45,7 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 	)
 
 	var (
-		getModelFromDashboardJson = func(filename string) []byte {
+		getModelFromAuditRegistrationJson = func(filename string) []byte {
 			By("Selecting the dashboard model")
 			file, err := os.Open(filename)
 			Expect(err).NotTo(HaveOccurred())
@@ -66,25 +66,25 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 			Expect(err).NotTo(HaveOccurred())
 		}
 
-		waitForDashboardToGetToFinalPhase = func() {
+		waitForAuditRegistrationToGetToFinalPhase = func() {
 			By("Waiting for the dashboard to get to final phase")
 			Eventually(func() bool {
-				dashboard, err := f.GetDashboard()
+				dashboard, err := f.GetAuditRegistration()
 				Expect(err).NotTo(HaveOccurred())
 
-				return dashboard.Status.Phase == api.DashboardPhaseSuccess || dashboard.Status.Phase == api.DashboardPhaseFailed
+				return dashboard.Status.Phase == api.AuditRegistrationPhaseSuccess || dashboard.Status.Phase == api.AuditRegistrationPhaseFailed
 			}, retryTimeout, 100*time.Millisecond).Should(BeTrue())
 
 		}
 
-		waitForDashboardToBeTerminated = func(dashboard *api.AuditRegistration) {
+		waitForAuditRegistrationToBeTerminated = func(dashboard *api.AuditRegistration) {
 			By("Deleting dashboard " + dashboard.Name)
-			err := f.DeleteDashboard()
+			err := f.DeleteAuditRegistration()
 			Expect(err).NotTo(HaveOccurred())
 
 			By("Waiting for the dashboard to be terminated")
 			Eventually(func() error {
-				_, err = f.GetDashboard()
+				_, err = f.GetAuditRegistration()
 				return err
 			}, retryTimeout, 100*time.Millisecond).ShouldNot(BeNil())
 		}
@@ -117,7 +117,7 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 
 		Context("Successful creation of a dashboard resource", func() {
 			BeforeEach(func() {
-				model := getModelFromDashboardJson("dashboard-with-panels-with-mixed-yaxes.json")
+				model := getModelFromAuditRegistrationJson("dashboard-with-panels-with-mixed-yaxes.json")
 				dashboard.Spec.Model = &runtime.RawExtension{
 					Raw: model,
 				}
@@ -126,27 +126,27 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 			})
 
 			It("should insert a dashboard into grafana database", func() {
-				err := f.CreateDashboard(dashboard)
+				err := f.CreateAuditRegistration(dashboard)
 				Expect(err).NotTo(HaveOccurred())
 
 			})
 
 			AfterEach(func() {
 				By("Verifying dashboard has been succeeded")
-				dashboard, err := f.GetDashboard()
+				dashboard, err := f.GetAuditRegistration()
 				Expect(err).NotTo(HaveOccurred())
 
-				Expect(dashboard.Status.Phase).To(BeEquivalentTo(api.DashboardPhaseSuccess))
+				Expect(dashboard.Status.Phase).To(BeEquivalentTo(api.AuditRegistrationPhaseSuccess))
 
-				Expect(dashboard.Status.Dashboard.ID).NotTo(BeNil())
-				Expect(dashboard.Status.Dashboard.UID).NotTo(BeNil())
-				Expect(dashboard.Status.Dashboard.Version).To(BeEquivalentTo(types.Int64P(dashboard.Status.ObservedGeneration)))
+				Expect(dashboard.Status.AuditRegistration.ID).NotTo(BeNil())
+				Expect(dashboard.Status.AuditRegistration.UID).NotTo(BeNil())
+				Expect(dashboard.Status.AuditRegistration.Version).To(BeEquivalentTo(types.Int64P(dashboard.Status.ObservedGeneration)))
 			})
 		})
 
 		Context("Unsuccessful creation of a dashboard resource", func() {
 			BeforeEach(func() {
-				model := getModelFromDashboardJson("dashboard-with-panels-with-mixed-yaxes.json")
+				model := getModelFromAuditRegistrationJson("dashboard-with-panels-with-mixed-yaxes.json")
 				dashboard.Spec.Model = &runtime.RawExtension{
 					Raw: model,
 				}
@@ -156,16 +156,16 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 			})
 
 			It("should not insert a dashboard into grafana database", func() {
-				err := f.CreateDashboard(dashboard)
+				err := f.CreateAuditRegistration(dashboard)
 				Expect(err).NotTo(HaveOccurred())
 
 			})
 
 			AfterEach(func() {
-				dashboard, err := f.GetDashboard()
+				dashboard, err := f.GetAuditRegistration()
 				Expect(err).NotTo(HaveOccurred())
-				Expect(dashboard.Status.Phase).To(BeEquivalentTo(api.DashboardPhaseFailed))
-				Expect(dashboard.Status.Dashboard).To(BeNil())
+				Expect(dashboard.Status.Phase).To(BeEquivalentTo(api.AuditRegistrationPhaseFailed))
+				Expect(dashboard.Status.AuditRegistration).To(BeNil())
 			})
 		})
 
@@ -176,25 +176,25 @@ var _ = Describe("Grafana Operator E2E testing", func() {
 			})
 
 			It("should not insert a dashboard into grafana database", func() {
-				err := f.CreateDashboard(dashboard)
+				err := f.CreateAuditRegistration(dashboard)
 				Expect(err).NotTo(HaveOccurred())
 
 			})
 
 			AfterEach(func() {
-				dashboard, err := f.GetDashboard()
+				dashboard, err := f.GetAuditRegistration()
 				Expect(err).NotTo(HaveOccurred())
-				Expect(dashboard.Status.Phase).To(BeEquivalentTo(api.DashboardPhaseFailed))
-				Expect(dashboard.Status.Dashboard).To(BeNil())
+				Expect(dashboard.Status.Phase).To(BeEquivalentTo(api.AuditRegistrationPhaseFailed))
+				Expect(dashboard.Status.AuditRegistration).To(BeNil())
 			})
 		})
 
 		JustAfterEach(func() {
-			waitForDashboardToGetToFinalPhase()
+			waitForAuditRegistrationToGetToFinalPhase()
 		})
 
 		AfterEach(func() {
-			waitForDashboardToBeTerminated(dashboard)
+			waitForAuditRegistrationToBeTerminated(dashboard)
 
 			By("Deleting Secret")
 			err := root.DeleteSecret()

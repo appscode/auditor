@@ -25,15 +25,15 @@ import (
 	meta_util "kmodules.xyz/client-go/meta"
 )
 
-func (f *Framework) GetDashboard() (*api.AuditRegistration, error) {
-	return f.extClient.AuditorV1alpha1().Dashboards(f.namespace).Get(context.TODO(), f.name, metav1.GetOptions{})
+func (f *Framework) GetAuditRegistration() (*api.AuditRegistration, error) {
+	return f.extClient.AuditorV1alpha1().AuditRegistrations(f.namespace).Get(context.TODO(), f.name, metav1.GetOptions{})
 }
 
-func (f *Framework) CreateDashboard(dashboard *api.AuditRegistration) error {
-	_, err := f.extClient.AuditorV1alpha1().Dashboards(dashboard.Namespace).Create(context.TODO(), dashboard, metav1.CreateOptions{})
+func (f *Framework) CreateAuditRegistration(dashboard *api.AuditRegistration) error {
+	_, err := f.extClient.AuditorV1alpha1().AuditRegistrations(dashboard.Namespace).Create(context.TODO(), dashboard, metav1.CreateOptions{})
 	return err
 }
 
-func (f *Framework) DeleteDashboard() error {
-	return f.extClient.AuditorV1alpha1().Dashboards(f.namespace).Delete(context.TODO(), f.name, meta_util.DeleteInForeground())
+func (f *Framework) DeleteAuditRegistration() error {
+	return f.extClient.AuditorV1alpha1().AuditRegistrations(f.namespace).Delete(context.TODO(), f.name, meta_util.DeleteInForeground())
 }

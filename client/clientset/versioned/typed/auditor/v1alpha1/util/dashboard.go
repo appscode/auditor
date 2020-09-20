@@ -34,19 +34,19 @@ import (
 	kutil "kmodules.xyz/client-go"
 )
 
-func CreateOrPatchDashboard(
+func CreateOrPatchAuditRegistration(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	meta metav1.ObjectMeta,
 	transform func(alert *api.AuditRegistration) *api.AuditRegistration,
 	opts metav1.PatchOptions,
 ) (*api.AuditRegistration, kutil.VerbType, error) {
-	cur, err := c.Dashboards(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
+	cur, err := c.AuditRegistrations(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
 	if kerr.IsNotFound(err) {
 		glog.V(3).Infof("Creating AuditRegistration %s/%s.", meta.Namespace, meta.Name)
-		out, err := c.Dashboards(meta.Namespace).Create(ctx, transform(&api.AuditRegistration{
+		out, err := c.AuditRegistrations(meta.Namespace).Create(ctx, transform(&api.AuditRegistration{
 			TypeMeta: metav1.TypeMeta{
-				Kind:       api.ResourceKindDashboard,
+				Kind:       api.ResourceKindAuditRegistration,
 				APIVersion: api.SchemeGroupVersion.String(),
 			},
 			ObjectMeta: meta,
@@ -58,20 +58,20 @@ func CreateOrPatchDashboard(
 	} else if err != nil {
 		return nil, kutil.VerbUnchanged, err
 	}
-	return PatchDashboard(ctx, c, cur, transform, opts)
+	return PatchAuditRegistration(ctx, c, cur, transform, opts)
 }
 
-func PatchDashboard(
+func PatchAuditRegistration(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	cur *api.AuditRegistration,
 	transform func(*api.AuditRegistration) *api.AuditRegistration,
 	opts metav1.PatchOptions,
 ) (*api.AuditRegistration, kutil.VerbType, error) {
-	return PatchDashboardObject(ctx, c, cur, transform(cur.DeepCopy()), opts)
+	return PatchAuditRegistrationObject(ctx, c, cur, transform(cur.DeepCopy()), opts)
 }
 
-func PatchDashboardObject(
+func PatchAuditRegistrationObject(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	cur, mod *api.AuditRegistration,
@@ -95,11 +95,11 @@ func PatchDashboardObject(
 		return cur, kutil.VerbUnchanged, nil
 	}
 	glog.V(3).Infof("Patching AuditRegistration %s/%s with %s.", cur.Namespace, cur.Name, string(patch))
-	out, err := c.Dashboards(cur.Namespace).Patch(ctx, cur.Name, types.MergePatchType, patch, opts)
+	out, err := c.AuditRegistrations(cur.Namespace).Patch(ctx, cur.Name, types.MergePatchType, patch, opts)
 	return out, kutil.VerbPatched, err
 }
 
-func TryUpdateDashboard(
+func TryUpdateAuditRegistration(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	meta metav1.ObjectMeta,
@@ -109,11 +109,11 @@ func TryUpdateDashboard(
 	attempt := 0
 	err = wait.PollImmediate(kutil.RetryInterval, kutil.RetryTimeout, func() (bool, error) {
 		attempt++
-		cur, e2 := c.Dashboards(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
+		cur, e2 := c.AuditRegistrations(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
 		if kerr.IsNotFound(e2) {
 			return false, e2
 		} else if e2 == nil {
-			result, e2 = c.Dashboards(cur.Namespace).Update(ctx, transform(cur.DeepCopy()), opts)
+			result, e2 = c.AuditRegistrations(cur.Namespace).Update(ctx, transform(cur.DeepCopy()), opts)
 			return e2 == nil, nil
 		}
 		glog.Errorf("Attempt %d failed to update AuditRegistration %s/%s due to %v.", attempt, cur.Namespace, cur.Name, e2)
@@ -126,7 +126,7 @@ func TryUpdateDashboard(
 	return
 }
 
-func UpdateDashboardStatus(
+func UpdateAuditRegistrationStatus(
 	ctx context.Context,
 	c cs.AuditorV1alpha1Interface,
 	meta metav1.ObjectMeta,
@@ -143,16 +143,16 @@ func UpdateDashboardStatus(
 	}
 
 	attempt := 0
-	cur, err := c.Dashboards(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
+	cur, err := c.AuditRegistrations(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
 	if err != nil {
 		return nil, err
 	}
 	err = wait.PollImmediate(kutil.RetryInterval, kutil.RetryTimeout, func() (bool, error) {
 		attempt++
 		var e2 error
-		result, e2 = c.Dashboards(meta.Namespace).UpdateStatus(ctx, apply(cur), opts)
+		result, e2 = c.AuditRegistrations(meta.Namespace).UpdateStatus(ctx, apply(cur), opts)
 		if kerr.IsConflict(e2) {
-			latest, e3 := c.Dashboards(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
+			latest, e3 := c.AuditRegistrations(meta.Namespace).Get(ctx, meta.Name, metav1.GetOptions{})
 			switch {
 			case e3 == nil:
 				cur = latest
