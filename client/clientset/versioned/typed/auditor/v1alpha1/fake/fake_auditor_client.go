@@ -19,9 +19,10 @@ limitations under the License.
 package fake
 
 import (
+	v1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1"
+
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"
-	v1alpha1 "kubeshield.dev/auditor/client/clientset/versioned/typed/auditor/v1alpha1"
 )
 
 type FakeAuditorV1alpha1 struct {

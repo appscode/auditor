@@ -66,7 +66,7 @@ func generateSwaggerJson() {
 		},
 		//nolint:govet
 		Resources: []openapi.TypeInfo{
-			{v1alpha1.SchemeGroupVersion, v1alpha1.ResourceDashboards, v1alpha1.ResourceKindDashboard, true},
+			{v1alpha1.SchemeGroupVersion, v1alpha1.ResourceAuditRegistrations, v1alpha1.ResourceKindAuditRegistration, true},
 		},
 	})
 	if err != nil {

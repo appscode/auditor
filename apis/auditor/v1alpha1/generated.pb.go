@@ -21,16 +21,13 @@ package v1alpha1
 
 import (
 	fmt "fmt"
-
 	io "io"
-
-	proto "github.com/gogo/protobuf/proto"
-
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 
+	proto "github.com/gogo/protobuf/proto"
 	v11 "kmodules.xyz/client-go/api/v1"
 )
 

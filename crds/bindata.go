@@ -215,8 +215,8 @@ type bintree struct {
 }
 
 var _bintree = &bintree{nil, map[string]*bintree{
-	"auditor.kubeshield.to_dashboards.v1.yaml": &bintree{auditorKubeshieldTo_dashboardsV1Yaml, map[string]*bintree{}},
-	"auditor.kubeshield.to_dashboards.yaml":    &bintree{auditorKubeshieldTo_dashboardsYaml, map[string]*bintree{}},
+	"auditor.kubeshield.to_dashboards.v1.yaml": {auditorKubeshieldTo_dashboardsV1Yaml, map[string]*bintree{}},
+	"auditor.kubeshield.to_dashboards.yaml":    {auditorKubeshieldTo_dashboardsYaml, map[string]*bintree{}},
 }}
 
 // RestoreAsset restores an asset under the given directory
