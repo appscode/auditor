@@ -50,8 +50,8 @@ func (obj *LiteObject) GetResourceVersion() string {
 	return obj.resourceVersion
 }
 
-func (obj *LiteObject) SetResourceVersion(version string) {
-	obj.resourceVersion = version
+func (obj *LiteObject) SetResourceVersion(resourceVersion string) {
+	obj.resourceVersion = resourceVersion
 }
 
 func (obj *LiteObject) GetGeneration() int64 {
@@ -66,7 +66,7 @@ func (obj *LiteObject) GetSelfLink() string {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetSelfLink(selfLink string) {
+func (obj *LiteObject) SetSelfLink(_ string) {
 	panic("implement me")
 }
 
@@ -74,7 +74,7 @@ func (obj *LiteObject) GetCreationTimestamp() metav1.Time {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetCreationTimestamp(timestamp metav1.Time) {
+func (obj *LiteObject) SetCreationTimestamp(_ metav1.Time) {
 	panic("implement me")
 }
 
@@ -82,7 +82,7 @@ func (obj *LiteObject) GetDeletionTimestamp() *metav1.Time {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetDeletionTimestamp(timestamp *metav1.Time) {
+func (obj *LiteObject) SetDeletionTimestamp(_ *metav1.Time) {
 	panic("implement me")
 }
 
@@ -90,7 +90,7 @@ func (obj *LiteObject) GetDeletionGracePeriodSeconds() *int64 {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetDeletionGracePeriodSeconds(i *int64) {
+func (obj *LiteObject) SetDeletionGracePeriodSeconds(_ *int64) {
 	panic("implement me")
 }
 
@@ -98,7 +98,7 @@ func (obj *LiteObject) GetLabels() map[string]string {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetLabels(labels map[string]string) {
+func (obj *LiteObject) SetLabels(_ map[string]string) {
 	panic("implement me")
 }
 
@@ -106,7 +106,7 @@ func (obj *LiteObject) GetAnnotations() map[string]string {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetAnnotations(annotations map[string]string) {
+func (obj *LiteObject) SetAnnotations(_ map[string]string) {
 	panic("implement me")
 }
 
@@ -114,7 +114,7 @@ func (obj *LiteObject) GetFinalizers() []string {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetFinalizers(finalizers []string) {
+func (obj *LiteObject) SetFinalizers(_ []string) {
 	panic("implement me")
 }
 
@@ -122,7 +122,7 @@ func (obj *LiteObject) GetOwnerReferences() []metav1.OwnerReference {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetOwnerReferences(references []metav1.OwnerReference) {
+func (obj *LiteObject) SetOwnerReferences(_ []metav1.OwnerReference) {
 	panic("implement me")
 }
 
@@ -138,7 +138,7 @@ func (obj *LiteObject) GetManagedFields() []metav1.ManagedFieldsEntry {
 	panic("implement me")
 }
 
-func (obj *LiteObject) SetManagedFields(managedFields []metav1.ManagedFieldsEntry) {
+func (obj *LiteObject) SetManagedFields(_ []metav1.ManagedFieldsEntry) {
 	panic("implement me")
 }
 
