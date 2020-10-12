@@ -93,12 +93,12 @@ func (c *AuditorController) pushFailureEvent(dashboard *api.AuditRegistration, r
 		dashboard.Name,
 		reason,
 	)
-	dashboard, err := util.UpdateDashboardStatus(context.TODO(), c.crClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.AuditRegistrationStatus) *api.AuditRegistrationStatus {
-		in.Phase = api.DashboardPhaseFailed
+	dashboard, err := util.UpdateAuditRegistrationStatus(context.TODO(), c.crClient.AuditorV1alpha1(), dashboard.ObjectMeta, func(in *api.AuditRegistrationStatus) *api.AuditRegistrationStatus {
+		in.Phase = "AuditRegistrationPhaseFailed"
 		in.Reason = reason
 		in.Conditions = kmapi.SetCondition(in.Conditions, kmapi.Condition{
-			Type:    kmapi.ConditionFailure,
-			Status:  kmapi.ConditionTrue,
+			Type:    kmapi.ConditionFailed,
+			Status:  core.ConditionTrue,
 			Reason:  reason,
 			Message: reason,
 		})
