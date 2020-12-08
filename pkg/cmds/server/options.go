@@ -20,19 +20,15 @@ import (
 	"flag"
 	"time"
 
-	cs "kubeshield.dev/auditor/client/clientset/versioned"
 	"kubeshield.dev/auditor/pkg/controller"
-	"kubeshield.dev/auditor/pkg/docker"
 
 	"github.com/spf13/pflag"
-	crd_cs "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/kubernetes"
 	"kmodules.xyz/client-go/tools/clusterid"
 )
 
 type ExtraOptions struct {
-	DockerRegistry string
 	MaxNumRequeues int
 	NumThreads     int
 	QPS            float64
@@ -42,7 +38,6 @@ type ExtraOptions struct {
 
 func NewExtraOptions() *ExtraOptions {
 	return &ExtraOptions{
-		DockerRegistry: docker.ACRegistry,
 		MaxNumRequeues: 5,
 		NumThreads:     2,
 		QPS:            100,
@@ -53,8 +48,6 @@ func NewExtraOptions() *ExtraOptions {
 
 func (s *ExtraOptions) AddGoFlags(fs *flag.FlagSet) {
 	clusterid.AddGoFlags(fs)
-
-	fs.StringVar(&s.DockerRegistry, "docker-registry", s.DockerRegistry, "Docker image registry for sidecar, init-container, check-job, recovery-job and kubectl-job")
 
 	fs.Float64Var(&s.QPS, "qps", s.QPS, "The maximum QPS to the master from this client")
 	fs.IntVar(&s.Burst, "burst", s.Burst, "The maximum burst for throttle")
@@ -70,7 +63,6 @@ func (s *ExtraOptions) AddFlags(fs *pflag.FlagSet) {
 func (s *ExtraOptions) ApplyTo(cfg *controller.Config) error {
 	var err error
 
-	cfg.DockerRegistry = s.DockerRegistry
 	cfg.MaxNumRequeues = s.MaxNumRequeues
 	cfg.NumThreads = s.NumThreads
 	cfg.ResyncPeriod = s.ResyncPeriod
@@ -81,12 +73,6 @@ func (s *ExtraOptions) ApplyTo(cfg *controller.Config) error {
 		return err
 	}
 	if cfg.DynamicClient, err = dynamic.NewForConfig(cfg.ClientConfig); err != nil {
-		return err
-	}
-	if cfg.CRClient, err = cs.NewForConfig(cfg.ClientConfig); err != nil {
-		return err
-	}
-	if cfg.CRDClient, err = crd_cs.NewForConfig(cfg.ClientConfig); err != nil {
 		return err
 	}
 	return nil

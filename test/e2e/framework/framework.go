@@ -17,19 +17,14 @@ limitations under the License.
 package framework
 
 import (
-	cs "kubeshield.dev/auditor/client/clientset/versioned"
-
 	"github.com/appscode/go/crypto/rand"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
-	appcat_cs "kmodules.xyz/custom-resources/client/clientset/versioned/typed/appcatalog/v1alpha1"
 )
 
 type Framework struct {
-	restConfig   *rest.Config
-	kubeClient   kubernetes.Interface
-	extClient    cs.Interface
-	appcatClient appcat_cs.AppcatalogV1alpha1Interface
+	restConfig *rest.Config
+	kubeClient kubernetes.Interface
 
 	namespace string
 	name      string
@@ -38,14 +33,10 @@ type Framework struct {
 func New(
 	restConfig *rest.Config,
 	kubeClient kubernetes.Interface,
-	extClient cs.Interface,
-	appcatClient appcat_cs.AppcatalogV1alpha1Interface,
 ) *Framework {
 	return &Framework{
-		restConfig:   restConfig,
-		kubeClient:   kubeClient,
-		extClient:    extClient,
-		appcatClient: appcatClient,
+		restConfig: restConfig,
+		kubeClient: kubeClient,
 
 		name:      rand.WithUniqSuffix("auditor"),
 		namespace: rand.WithUniqSuffix("grafana"),
