@@ -32,7 +32,7 @@ import (
 	"kmodules.xyz/client-go/tools/clientcmd"
 )
 
-const defaultEtcdPathPrefix = "/registry/auditor.kubeshield.to"
+const defaultEtcdPathPrefix = "/registry/auditor.kubeshield.cloud"
 
 type AuditorOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions

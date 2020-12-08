@@ -18,46 +18,30 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	kmapi "kmodules.xyz/client-go/api/v1"
 )
 
 const (
 	ResourceKindAuditRegistration = "AuditRegistration"
-	ResourceAuditRegistration     = "auditregistration"
-	ResourceAuditRegistrations    = "auditregistrations"
 )
 
-// +genclient
-// +k8s:openapi-gen=true
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// +kubebuilder:object:root=true
-// +kubebuilder:resource:path=dashboards,singular=dashboard,categories={auditor,kubeshield,appscode}
-// +kubebuilder:subresource:status
 type AuditRegistration struct {
-	metav1.TypeMeta   `json:",inline,omitempty"`
-	metav1.ObjectMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
-	Spec              AuditRegistrationSpec   `json:"spec,omitempty" protobuf:"bytes,2,opt,name=spec"`
-	Status            AuditRegistrationStatus `json:"status,omitempty" protobuf:"bytes,3,opt,name=status"`
-}
+	metav1.TypeMeta `json:",inline,omitempty"`
 
-type AuditRegistrationSpec struct {
-	Rules []PolicyRule `json:"rules" protobuf:"bytes,1,rep,name=rules"`
+	Rules []PolicyRule `json:"rules"`
 }
 
 type PolicyRule struct {
-	// Operation is the operation being performed
-	Operations []Operation `json:"operations" protobuf:"bytes,1,rep,name=operations,casttype=Operation"`
-
 	// Resources that this rule matches. An empty list implies all kinds in all API groups.
 	// +optional
-	Resources []GroupResources `json:"resources,omitempty" protobuf:"bytes,2,rep,name=resources"`
+	Resources []GroupResources `json:"resources,omitempty"`
 
 	// Namespaces that this rule matches.
 	// The empty string "" matches non-namespaced resources.
 	// An empty list implies every namespace.
 	// +optional
-	Namespaces []string `json:"namespaces,omitempty" protobuf:"bytes,3,rep,name=namespaces"`
+	Namespaces []string `json:"namespaces,omitempty"`
 }
 
 // GroupResources represents resource kinds in an API group.
@@ -65,46 +49,11 @@ type GroupResources struct {
 	// Group is the name of the API group that contains the resources.
 	// The empty string represents the core API group.
 	// +optional
-	Group string `json:"group" protobuf:"bytes,1,opt,name=group"`
+	Group string `json:"group"`
 	// Resources is a list of resources within the API group. Subresources are
 	// matched using a "/" to indicate the subresource. For example, "pods/log"
 	// would match request to the log subresource of pods. The top level resource
 	// does not match subresources, "pods" doesn't match "pods/log".
 	// +optional
-	Resources []string `json:"resources,omitempty" protobuf:"bytes,2,rep,name=resources"`
-	// ResourceNames is a list of resource instance names that the policy matches.
-	// Using this field requires Resources to be specified.
-	// An empty list implies that every instance of the resource is matched.
-	// +optional
-	ResourceNames []string `json:"resourceNames,omitempty" protobuf:"bytes,3,rep,name=resourceNames"`
-}
-
-// Operation is the type of resource operation being checked for admission control
-type Operation string
-
-// Operation constants
-const (
-	Create Operation = "Upsert"
-	Delete Operation = "Delete"
-)
-
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-// +kubebuilder:object:root=true
-
-type AuditRegistrationList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
-	Items           []AuditRegistration `json:"items,omitempty" protobuf:"bytes,2,rep,name=items"`
-}
-
-type AuditRegistrationStatus struct {
-	Phase  string `json:"phase,omitempty" protobuf:"bytes,1,opt,name=phase"`
-	Reason string `json:"reason,omitempty" protobuf:"bytes,2,opt,name=reason"`
-	// observedGeneration is the most recent generation observed for this resource. It corresponds to the
-	// resource's generation, which is updated on mutation by the API Server.
-	// +optional
-	ObservedGeneration int64 `json:"observedGeneration,omitempty" protobuf:"varint,3,opt,name=observedGeneration"`
-	// Conditions applied to the request, such as approval or denial.
-	// +optional
-	Conditions []kmapi.Condition `json:"conditions,omitempty" protobuf:"bytes,4,rep,name=conditions"`
+	Resources []string `json:"resources,omitempty"`
 }

@@ -37,9 +37,9 @@ type FakeAuditRegistrations struct {
 	ns   string
 }
 
-var auditregistrationsResource = schema.GroupVersionResource{Group: "auditor.kubeshield.to", Version: "v1alpha1", Resource: "auditregistrations"}
+var auditregistrationsResource = schema.GroupVersionResource{Group: "auditor.kubeshield.cloud", Version: "v1alpha1", Resource: "auditregistrations"}
 
-var auditregistrationsKind = schema.GroupVersionKind{Group: "auditor.kubeshield.to", Version: "v1alpha1", Kind: "AuditRegistration"}
+var auditregistrationsKind = schema.GroupVersionKind{Group: "auditor.kubeshield.cloud", Version: "v1alpha1", Kind: "AuditRegistration"}
 
 // Get takes name of the auditRegistration, and returns the corresponding auditRegistration object, and an error if there is any.
 func (c *FakeAuditRegistrations) Get(ctx context.Context, name string, options v1.GetOptions) (result *v1alpha1.AuditRegistration, err error) {
