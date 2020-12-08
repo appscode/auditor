@@ -19,11 +19,8 @@ package controller
 import (
 	"time"
 
-	cs "kubeshield.dev/auditor/client/clientset/versioned"
-	grafanainformers "kubeshield.dev/auditor/client/informers/externalversions"
 	"kubeshield.dev/auditor/pkg/eventer"
 
-	crd_cs "k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/dynamic/dynamicinformer"
 	"k8s.io/client-go/kubernetes"
@@ -32,7 +29,6 @@ import (
 )
 
 type config struct {
-	DockerRegistry string
 	MaxNumRequeues int
 	NumThreads     int
 	ResyncPeriod   time.Duration
@@ -44,8 +40,6 @@ type Config struct {
 	ClientConfig  *rest.Config
 	KubeClient    kubernetes.Interface
 	DynamicClient dynamic.Interface
-	CRClient      cs.Interface
-	CRDClient     crd_cs.Interface
 }
 
 func NewConfig(clientConfig *rest.Config) *Config {
@@ -64,15 +58,8 @@ func (c *Config) New() (*AuditorController, error) {
 		clientConfig:           c.ClientConfig,
 		kubeClient:             c.KubeClient,
 		dynamicClient:          c.DynamicClient,
-		crClient:               c.CRClient,
-		crdClient:              c.CRDClient,
 		dynamicInformerFactory: dynamicinformer.NewDynamicSharedLiteInformerFactory(c.DynamicClient, c.ResyncPeriod),
-		crInformerFactory:      grafanainformers.NewSharedInformerFactory(c.CRClient, c.ResyncPeriod),
 		recorder:               eventer.NewEventRecorder(c.KubeClient, "auditor"),
-	}
-
-	if err := ctrl.ensureCustomResourceDefinitions(); err != nil {
-		return nil, err
 	}
 
 	// For Dashboard

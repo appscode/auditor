@@ -101,10 +101,6 @@ github.com/gophercloud/gophercloud/openstack/identity/v2/tokens
 github.com/gophercloud/gophercloud/openstack/identity/v3/tokens
 github.com/gophercloud/gophercloud/openstack/utils
 github.com/gophercloud/gophercloud/pagination
-# github.com/gosimple/slug v1.1.1
-github.com/gosimple/slug
-# github.com/grafana-tools/sdk v0.0.0-20200908142517-0a69ce5bbb82
-github.com/grafana-tools/sdk
 # github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
 github.com/gregjones/httpcache
 github.com/gregjones/httpcache/diskcache
@@ -195,8 +191,6 @@ github.com/prometheus/common/model
 github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
 github.com/prometheus/procfs/internal/util
-# github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be
-github.com/rainycape/unidecode
 # github.com/russross/blackfriday/v2 v2.0.1
 github.com/russross/blackfriday/v2
 # github.com/sergi/go-diff v1.0.0
@@ -632,7 +626,6 @@ k8s.io/cli-runtime/pkg/resource
 k8s.io/client-go/discovery
 k8s.io/client-go/discovery/cached/disk
 k8s.io/client-go/discovery/cached/memory
-k8s.io/client-go/discovery/fake
 k8s.io/client-go/dynamic
 k8s.io/client-go/dynamic/dynamicinformer
 k8s.io/client-go/dynamic/dynamiclister
@@ -785,7 +778,6 @@ k8s.io/client-go/plugin/pkg/client/auth/openstack
 k8s.io/client-go/rest
 k8s.io/client-go/rest/watch
 k8s.io/client-go/restmapper
-k8s.io/client-go/testing
 k8s.io/client-go/third_party/forked/golang/template
 k8s.io/client-go/tools/auth
 k8s.io/client-go/tools/cache
@@ -824,8 +816,6 @@ k8s.io/kube-openapi/pkg/handler
 k8s.io/kube-openapi/pkg/schemaconv
 k8s.io/kube-openapi/pkg/util
 k8s.io/kube-openapi/pkg/util/proto
-# k8s.io/kubernetes v1.18.9 => github.com/kmodules/kubernetes v1.19.0-alpha.0.0.20200922200158-8b13196d8dc4
-k8s.io/kubernetes/pkg/api/legacyscheme
 # k8s.io/utils v0.0.0-20200324210504-a9aa75ae1b89 => k8s.io/utils v0.0.0-20200324210504-a9aa75ae1b89
 k8s.io/utils/buffer
 k8s.io/utils/integer
@@ -835,7 +825,6 @@ k8s.io/utils/pointer
 k8s.io/utils/trace
 # kmodules.xyz/client-go v0.0.0-20201208053851-a1d7be95e006
 kmodules.xyz/client-go
-kmodules.xyz/client-go/api/v1
 kmodules.xyz/client-go/apiextensions
 kmodules.xyz/client-go/apiextensions/v1
 kmodules.xyz/client-go/apiextensions/v1beta1
@@ -854,8 +843,6 @@ kmodules.xyz/crd-schema-fuzz
 # kmodules.xyz/custom-resources v0.0.0-20201124062543-bd8d35c21b0c
 kmodules.xyz/custom-resources/apis/appcatalog
 kmodules.xyz/custom-resources/apis/appcatalog/v1alpha1
-kmodules.xyz/custom-resources/client/clientset/versioned/scheme
-kmodules.xyz/custom-resources/client/clientset/versioned/typed/appcatalog/v1alpha1
 kmodules.xyz/custom-resources/crds
 # kmodules.xyz/webhook-runtime v0.0.0-20201105073856-2dc7382b88c6
 kmodules.xyz/webhook-runtime/admission/v1beta1

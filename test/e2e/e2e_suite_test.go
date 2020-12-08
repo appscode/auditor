@@ -61,28 +61,17 @@ var _ = BeforeSuite(func() {
 	Expect(err).NotTo(HaveOccurred())
 
 	// Framework
-	root = framework.New(clientConfig, ctrlConfig.KubeClient, ctrlConfig.CRClient, ctrlConfig.AppCatalogClient)
+	root = framework.New(clientConfig, ctrlConfig.KubeClient)
 
 	By("Creating namespace " + root.Namespace())
 	err = root.CreateNamespace()
 	Expect(err).NotTo(HaveOccurred())
 
-	By("Creating grafana server")
-	err = root.DeployGrafanaServer()
-	Expect(err).NotTo(HaveOccurred())
-
-	By("Waiting for grafana server to be ready")
-	root.WaitForGrafanaServerToBeReady()
-
 	root.EventuallyCRD().Should(Succeed())
 })
 
 var _ = AfterSuite(func() {
-	By("Deleting grafana server")
-	err := root.DeleteGrafanaServer()
-	Expect(err).NotTo(HaveOccurred())
-
 	By("Deleting Namespace")
-	err = root.DeleteNamespace()
+	err := root.DeleteNamespace()
 	Expect(err).NotTo(HaveOccurred())
 })
