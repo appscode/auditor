@@ -3,7 +3,6 @@ module kubeshield.dev/auditor
 go 1.13
 
 require (
-	github.com/appscode/go v0.0.0-20200928211031-cc0c23082d91
 	github.com/go-openapi/spec v0.19.8
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
@@ -13,7 +12,9 @@ require (
 	github.com/spf13/cobra v1.1.1
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/net v0.0.0-20200625001655-4c5254603344 // indirect
-	gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209 // indirect
+	gomodules.xyz/pointer v0.0.0-20201105071923-daf60fa55209
+	gomodules.xyz/runtime v0.0.0-20201104200926-d838b09dda8b
+	gomodules.xyz/x v0.0.0-20201105065653-91c568df6331
 	k8s.io/api v0.18.9
 	k8s.io/apimachinery v0.18.9
 	k8s.io/apiserver v0.18.9
