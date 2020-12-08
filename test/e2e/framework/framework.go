@@ -17,7 +17,7 @@ limitations under the License.
 package framework
 
 import (
-	"github.com/appscode/go/crypto/rand"
+	"gomodules.xyz/x/crypto/rand"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 )

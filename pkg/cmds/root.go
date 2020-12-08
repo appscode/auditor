@@ -22,9 +22,9 @@ import (
 
 	"kubeshield.dev/auditor/apis/auditor/install"
 
-	"github.com/appscode/go/flags"
-	v "github.com/appscode/go/version"
 	"github.com/spf13/cobra"
+	"gomodules.xyz/x/flags"
+	v "gomodules.xyz/x/version"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	clientsetscheme "k8s.io/client-go/kubernetes/scheme"
 	"kmodules.xyz/client-go/logs"
