@@ -66,8 +66,6 @@ var _ = BeforeSuite(func() {
 	By("Creating namespace " + root.Namespace())
 	err = root.CreateNamespace()
 	Expect(err).NotTo(HaveOccurred())
-
-	root.EventuallyCRD().Should(Succeed())
 })
 
 var _ = AfterSuite(func() {

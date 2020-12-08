@@ -35,10 +35,6 @@ import (
 	admissionreview "kmodules.xyz/webhook-runtime/registry/admissionreview/v1beta1"
 )
 
-const (
-	apiserviceName = "v1alpha1.validators.auditor.kubeshield.cloud"
-)
-
 var (
 	Scheme = runtime.NewScheme()
 	Codecs = serializer.NewCodecFactory(Scheme)
