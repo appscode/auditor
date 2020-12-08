@@ -21,5 +21,5 @@ limitations under the License.
 // +k8s:openapi-gen=true
 // +k8s:defaulter-gen=TypeMeta
 
-// +groupName=auditor.kubeshield.to
+// +groupName=auditor.kubeshield.cloud
 package v1alpha1

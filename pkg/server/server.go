@@ -36,7 +36,7 @@ import (
 )
 
 const (
-	apiserviceName = "v1alpha1.validators.auditor.kubeshield.to"
+	apiserviceName = "v1alpha1.validators.auditor.kubeshield.cloud"
 )
 
 var (

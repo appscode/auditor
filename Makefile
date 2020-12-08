@@ -146,7 +146,7 @@ clientset:
 		--env HTTPS_PROXY=$(HTTPS_PROXY)                 \
 		$(CODE_GENERATOR_IMAGE)                          \
 		/go/src/k8s.io/code-generator/generate-groups.sh \
-			all                                          \
+			deepcopy                                     \
 			$(GO_PKG)/$(REPO)/client                     \
 			$(GO_PKG)/$(REPO)/apis                       \
 			"$(API_GROUPS)"                              \
@@ -203,7 +203,7 @@ gen-crds:
 			paths="./apis/..."              \
 			output:crd:artifacts:config=crds
 
-crds_to_patch := auditor.kubeshield.to_dashboards.yaml
+crds_to_patch := auditor.kubeshield.cloud_dashboards.yaml
 
 .PHONY: patch-crds
 patch-crds: $(addprefix patch-crd-, $(crds_to_patch))
@@ -258,7 +258,7 @@ gen-bindata:
 manifests: gen-crds patch-crds label-crds gen-bindata
 
 .PHONY: gen
-gen: clientset gen-crd-protos manifests openapi
+gen: clientset
 
 fmt: $(BUILD_DIRS)
 	@docker run                                                 \

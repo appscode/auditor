@@ -30,7 +30,7 @@ type AuditorV1alpha1Interface interface {
 	AuditRegistrationsGetter
 }
 
-// AuditorV1alpha1Client is used to interact with features provided by the auditor.kubeshield.to group.
+// AuditorV1alpha1Client is used to interact with features provided by the auditor.kubeshield.cloud group.
 type AuditorV1alpha1Client struct {
 	restClient rest.Interface
 }
